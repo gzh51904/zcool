@@ -1,8 +1,8 @@
 .cate-list{
     color: #333;
     text-align: center;
-    background-color: #fff;
-    font-size: 30px;
+    background-color: #fff!important;
+    font-size: 15px;
     height: 100%;
 .searchbox{
     margin: .5rem;
@@ -17,17 +17,16 @@
         color: #666;
     .box-search{
         width: 92%;
-        position: relative;
-        margin-left: 6px;
-        height: 24px;
-        line-height: 24px;
-        padding: 0;
-        vertical-align: middle;
-        background-color: #fff;
-        color: #999;
-        float: left;
+    position: relative;
+    margin-left: 6px;
+    height: 24px;
+    line-height: 24px;
+    padding: 0;
+    vertical-align: middle;
+    background-color: #fff;
+    color: #999;
+    float: left;
         .sousuo{
-            margin-left: 30px;
             -webkit-tap-highlight-color: transparent;
             -webkit-appearance: none;
             font-size: 13px;
@@ -54,48 +53,50 @@
     position: absolute;
         }
     }
-    button{
-        top: .125rem;
+    .search-submit{
         display: block;
-    position: absolute;
-    left: 6px;
-    border: 0 none;
-    background: none;
-    cursor: pointer;
+        position: absolute;
+        border: 0 none;
+        background: none;
+        cursor: pointer;
+        line-height: 24px;
+        top:0;
     img{
-        width: 24px!important;
-        height: 24px!important;
-        vertical-align: middle;
-        border: 0;
-        box-sizing: border-box;
-        background-image: url(../img/listsearch.png)
+        height: 24px;
+    vertical-align: middle;
+    border: 0;
     }
     }
     }
     }
     .list-left{
-        float: left;
+    float: left;
     width: 25%;
     background: #f9f9f9;
     overflow: hidden;
     font-size: 14px;
-    ul{
+    height: 100%;
+    .uls{
         transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
     transition-duration: 0ms;
     transform: translate(0px, 0px) translateZ(0px);
-    text-indent: 30px;
+    text-indent: 15px;
     list-style: none;
     padding: 0;
     margin: 0;
     text-align: left;
-    li{
-        height: 45px;
-    line-height: 45px;
-    position: relative;
-    border-bottom: 1px solid #ebebeb;
-    cursor: pointer;
-    border-left: 4px solid #f9f9f9;
+    height: 100%;
+    .am-tabs-default-bar-tab{
+        width: 77px!important;
     }
+    .am-tabs-default-bar-underline{
+        right: 37px;
+    }
+    .am-tabs-default-bar-tab{
+        border-right:none!important;
+        border-bottom: 1px solid #ebebeb;
+    }
+
     }
     }
     .list-right{

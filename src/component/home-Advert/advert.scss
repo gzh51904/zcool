@@ -1,0 +1,128 @@
+.advert {
+    overflow: hidden;
+    width: 100%;
+
+    .activity {
+        margin-top: 0rem;
+        height: 4.592rem;
+        width: 100%;
+
+        div {
+            width: 100%;
+            height: 4.592rem;
+            margin: 0 -1px 0 0;
+            font-size: 0;
+            display: inline-block;
+            float: left;
+
+            a {
+                width: 100%;
+                height: 100%;
+                background-image: url("https://s2.juancdn.com/jas/190717/3/0/5d2eca35b6f8ea10d77e30cc_1080x310.gif");
+                display: inline-block;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                box-sizing: border-box;
+                float: left;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .recomm {
+        margin-top: 0rem;
+        height: 3.8512rem;
+        width: 100%;
+        overflow: hidden;
+
+        div {
+            width: 100%;
+            height: 3.8512rem;
+            margin: 0 -1px 0 0;
+            font-size: 0;
+            display: inline-block;
+            float: left;
+
+            a {
+                width: 100%;
+                height: 100%;
+                background-image: url("https://goods5.juancdn.com/jas/190717/8/2/5d2ecac9b6f8ea11345268eb_1080x260.png?iopcmd=convert&Q=85&dst=png");
+                display: inline-block;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                box-sizing: border-box;
+                float: left;
+            }
+        }
+    }
+
+    .zhuanchang {
+        margin-top: 0rem;
+        height: 4.8896rem;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+
+        .zhuanchang_nvzhuang,
+        .zhuanchang_xiebao,
+        .zhuanchang_muying {
+            height: 4.8896rem;
+            margin: 0 -1px 0 0;
+            font-size: 0;
+            float: left;
+            flex: 1;
+            a {
+                display: block;
+                width: 100%;
+                float: left;
+                height: 100%;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                box-sizing: border-box;
+            }
+        }
+
+        .zhuanchang_nvzhuang>a {
+            background-image: url("https://goods3.juancdn.com/jas/190719/4/7/5d31373ab6f8ea0beb1841f8_360x330.png?iopcmd=convert&Q=85&dst=png");
+        }
+
+        .zhuanchang_xiebao>a {
+            background-image: url("https://goods5.juancdn.com/jas/190717/9/2/5d2ecbd1b6f8ea0fd7161c7b_360x330.png?iopcmd=convert&Q=85&dst=png");
+        }
+
+        .zhuanchang_muying>a {
+            background-image: url("https://goods7.juancdn.com/jas/190717/d/d/5d2ecbecb6f8ea18401367b3_360x330.png?iopcmd=convert&Q=85&dst=png");
+        }
+    }
+
+    .advert_title {
+        margin-top: 0.426667rem;
+        height: 2.0448rem;
+        width: 100%;
+        overflow: hidden;
+
+        div {
+            width: 100%;
+            height: 2.0448rem;
+            margin: 0 -1px 0 0;
+            font-size: 0;
+            display: inline-block;
+            float: left;
+
+            a {
+                width: 100%;
+                height: 100%;
+                background-image: url("https://goods7.juancdn.com/jas/180518/c/6/5afe2f0db6f8ea096f2bfb35_1080x138.png?iopcmd=convert&Q=85&dst=png");
+                display: inline-block;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                box-sizing: border-box;
+                float: left;
+            }
+        }
+    }
+}

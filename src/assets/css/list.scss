@@ -1,0 +1,107 @@
+.cate-list{
+    color: #333;
+    text-align: center;
+    background-color: #fff;
+    font-size: 30px;
+    height: 100%;
+.searchbox{
+    margin: .5rem;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: .125rem 0;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    a{
+        color: #666;
+    .box-search{
+        width: 92%;
+        position: relative;
+        margin-left: 6px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0;
+        vertical-align: middle;
+        background-color: #fff;
+        color: #999;
+        float: left;
+        .sousuo{
+            margin-left: 30px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-appearance: none;
+            font-size: 13px;
+            width: 90%;
+            left: 0;
+            background-color: transparent;
+            font: -webkit-small-control;
+    font-size: 16px;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    border: none;
+    outline-style: none;
+    word-break: normal;
+    vertical-align: middle;
+    height: 24px;
+    line-height: 24px;
+    margin-left: 25px;
+    position: absolute;
+        }
+    }
+    button{
+        top: .125rem;
+        display: block;
+    position: absolute;
+    left: 6px;
+    border: 0 none;
+    background: none;
+    cursor: pointer;
+    img{
+        width: 24px!important;
+        height: 24px!important;
+        vertical-align: middle;
+        border: 0;
+        box-sizing: border-box;
+        background-image: url(../img/listsearch.png)
+    }
+    }
+    }
+    }
+    .list-left{
+        float: left;
+    width: 25%;
+    background: #f9f9f9;
+    overflow: hidden;
+    font-size: 14px;
+    ul{
+        transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
+    transition-duration: 0ms;
+    transform: translate(0px, 0px) translateZ(0px);
+    text-indent: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    li{
+        height: 45px;
+    line-height: 45px;
+    position: relative;
+    border-bottom: 1px solid #ebebeb;
+    cursor: pointer;
+    border-left: 4px solid #f9f9f9;
+    }
+    }
+    }
+    .list-right{
+        float: left;
+        width: 71%;
+        font-size: 12px;
+        padding-left: 4%;
+    }
+}

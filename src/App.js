@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 
 // import logo from './logo.svg';
 import './App.css';
+import './assets/css/base.css'
 import {Route,withRouter,Redirect} from 'react-router-dom';
 import { TabBar} from 'antd-mobile';
 

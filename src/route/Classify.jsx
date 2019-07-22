@@ -5,14 +5,7 @@ import '../assets/css/list.scss'
 
 //搜索栏
 import ListSearch from '../component/listComponent/list-search';
-import { Tabs, WhiteSpace } from 'antd-mobile';
-
-const tabs = [
-    { title: '女装', key: 't1' },
-    { title: '男装', key: 't2' },
-    { title: '母婴', key: 't3' },
-    { title: '鞋子', key: 't4' }
-  ];
+import Listright from '../component/listComponent/list-right';
 
 
 class Classify extends Component{
@@ -23,67 +16,67 @@ class Classify extends Component{
         this.state={
             menus:[{
                 name:'sp1',
-                path:'/female',
+                path:'/nvzhuang',
                 title:'女装',
                 activeStyle:true
             },{
                 name:'sp2',
-                path:'/male',
+                path:'/male1',
                 title:'男装',
                 activeStyle:false
             },{
                 name:'sp3',
-                path:'/female',
+                path:'/female2',
                 title:'母婴',
                 activeStyle:false
             },{
                 name:'sp4',
-                path:'/male',
+                path:'/male3',
                 title:'鞋子',
                 activeStyle:false
             },{
                 name:'sp5',
-                path:'/female',
+                path:'/female4',
                 title:'箱包',
                 activeStyle:false
             },{
                 name:'sp6',
-                path:'/male',
+                path:'/male5',
                 title:'居家百货',
                 activeStyle:false
             },{
                 name:'sp7',
-                path:'/female',
+                path:'/female6',
                 title:'家电数码',
                 activeStyle:false
             },{
                 name:'sp8',
-                path:'/male',
+                path:'/male7',
                 title:'内衣配饰',
                 activeStyle:false
             },{
                 name:'sp9',
-                path:'/female',
+                path:'/female8',
                 title:'美妆',
                 activeStyle:false
             },{
                 name:'sp10',
-                path:'/female',
+                path:'/female9',
                 title:'运动户外',
                 activeStyle:false
             },{
                 name:'sp11',
-                path:'/female',
+                path:'/female10',
                 title:'美食',
                 activeStyle:false
             },{
                 name:'sp12',
-                path:'/female',
+                path:'/female11',
                 title:'车品文娱',
                 activeStyle:false
             },{
                 name:'sp13',
-                path:'/female',
+                path:'/female12',
                 title:'通讯旅游',
                 activeStyle:false
             }]
@@ -92,49 +85,45 @@ class Classify extends Component{
 
     }
     goto(){
-        console.log('sf',this)
-        // this="colorRed";
+        console.log('sf',this.props)
+
     }
 
 
     render(){
+        let {url,path} = this.props.match;
         return <div className="cate-list">
             {/* 搜索栏 */}
             <ListSearch></ListSearch>
-            {/* 列表左侧 */}               
-    <div className='list-left' style={{ height: 200 }}>
-  
-    <ul className="uls">
-    <Tabs className="" tabs={tabs}
-      initialPage={'t2'}
-      tabBarPosition="left"
-      tabDirection="vertical"
-      tabBarBackgroundColor="#f9f9f9;"
-      tabBarActiveTextColor="red"
-      tabBarInactiveTextColor="#333333"
-    >
-      <div  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-        Content of first tab
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-        Content of second tab
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
-        Content of third tab
-      </div>
-    </Tabs>
-    </ul>
- 
-  </div>
-                            {/* <li key={item.name} onClick={this.goto.bind(this)} className={item.activeStyle} className="bc">{item.title}</li> */}
-                        
-                    
-               
-       
-
-
-
+            {/* 列表左侧 */}
+            <div className="list-left">
+            <ul>
+                <nav>
+              {
+                  this.state.menus.map(item=>{
+                      return (
+                          <NavLink className="liss" to={url+item.path} key={item.name} activeStyle={{color:"#58bc58"}}>{item.title}</NavLink>
+                      )
+                  })
+              }
+              </nav>
+              
+            </ul>
+            </div>
+            {/* 列表右侧*/}
+            {/* <Listright/> */}
+            <Switch>
+              <Route path={path+ "/nvzhuang"} render={()=>{
+                  return <Listright/>
+              }}/>
+              </Switch>
+      
+                   
         </div>
+
+        
+
+        
     }
 }
 

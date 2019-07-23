@@ -35,6 +35,13 @@ class Goo1 extends Component{
                 keys:'s6'
             }]
         }
+        this.goto=this.goto.bind(this);
+    }
+
+    goto(){
+        let {history} = this.props;
+        let cate = "/cate";
+        history.push(cate);
     }
     render(){
   
@@ -46,7 +53,7 @@ class Goo1 extends Component{
                     this.state.menus.map(item=>{
                         return(
                     
-                            <div  key={item.title} className="catesecond">
+                            <div onClick={this.goto.bind(this)}  key={item.title} className="catesecond">
                                 <a  href="javascript:;">
                            <img className="imgs" src={item.pic} alt=""/>
                            <span>{item.title}</span>

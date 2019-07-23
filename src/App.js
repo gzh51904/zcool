@@ -10,6 +10,7 @@ import Home from './route/Home';
 import Car from './route/Car';
 import Classify from './route/Classify';
 import Mine from './route/Mine';
+import Cate from './route/Cate';
 
 
 class App extends Component {
@@ -17,11 +18,15 @@ class App extends Component {
         super(props);
         this.state = {
           selectedTab: 'blueTab',
-          hidden: false,
+          hidden: false
         };
       }
 
+
+
     render(){return <div className="App">
+        <Route path="/cate" component={Cate}/>
+            <>
             <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
             <TabBar
             unselectedTintColor="#333333"
@@ -85,6 +90,7 @@ class App extends Component {
                 data-seed="logId1"
             >
                 <Route path="/classify" component={Classify}/>
+                
             </TabBar.Item>
             <TabBar.Item
                 icon={
@@ -112,6 +118,7 @@ class App extends Component {
                 }}
             >
                 <Route path="/car" component={Car}/>
+                
             </TabBar.Item>
             <TabBar.Item
                 icon={<div style={{
@@ -135,11 +142,28 @@ class App extends Component {
                 }}
             >
                 <Route path="/mine" component={Mine}/>
+                
             </TabBar.Item>
+            
             </TabBar>
         </div>
+        </>
         </div>
     }
+
+    // componentDidUpdate(){
+    //     //   console.log(this.props.location.pathname)
+    //     // this.state.hidden=true;
+    //     let luu =this.props.location.pathname;
+    //     if(luu === "/cate"){
+    //         console.log(222222)
+    //         // console.log(this.props.location.pathname)
+    //         this.state.hidden=true;
+    //         console.log(this.state.hidden)
+    //     }else{
+    //         this.state.hidden=false;
+    //     }
+    //   }
 
 }
 

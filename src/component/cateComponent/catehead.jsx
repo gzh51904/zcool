@@ -12,7 +12,7 @@ class Catehead extends Component{
     }
 
     goback(){
-        this.props.gotoback();
+        this.props.z();
     }
     
 

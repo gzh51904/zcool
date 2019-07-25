@@ -27,7 +27,7 @@ class Gdetails extends Component{
             <Gdlunbo/>
             {/* 商品信息 */}
             <Gdinf/>
-            {/* 商品售后 */}
+            {/* 购买选择 */}
             <Gad/>
             </div>
    

@@ -23,6 +23,7 @@ class Cate extends Component{
     }
 
     async  componentDidMount(){
+        this.props.history.push('/indexs/cate/:db');
         
         // let {data} =  await axios.get('http://localhost:3001/catelist',{
         //     params:{

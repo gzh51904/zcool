@@ -29,6 +29,7 @@ class App extends Component {
 
     render(){return <div className="App">
             <Route path="/indexs/cate/:db" component={Cate}/>
+            {/* <Route path="/indexs/car" component={Car}/> */}
             <Route path="/indexs/gdetails" component={Gdetails}/>
             <Route path="/searchpage" component={SearchPage}/>
             <Route path="/indexs" component={Indexs}/>

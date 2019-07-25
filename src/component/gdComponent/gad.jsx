@@ -92,6 +92,36 @@ mashulist.push(<div key={j}
                 <Icon className="wstDz" type="right" />
               </div>
             </div>
+            {/* 店铺 */}
+            <div className="homj">
+              <div>
+                <div className="gHyDBV">
+                  <div className="iWGNAQ">
+                    <img className="iwQlpP" src="https://goods5.juancdn.com/bao/170420/8/2/58f86720a43d1f0671769a5a_180x90.png?iopcmd=convert&Q=88&dst=png" alt=""/>
+                  </div>
+                  <div className="ewzTJI">
+                    <div className="eAUfqE">艾路丝婷女装小店</div>
+                    <div className="WySNi">共14件商品</div>
+                  </div>
+                  <div className="jinru">
+                    <a className="dsGqKv" href="jacascript:;">
+                      <span className="ebsHjU">进入店铺</span>
+                      <Icon className="efcxPt" type="right" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* 商品图片 */}
+            {/* <div className="homj">
+              <div className="kNAwVG">
+                <div className="epeevU">
+                  <div className="dyihyA">
+                    <img className="fNsQUK" src="https://goods2.juancdn.com/goods/180526/2/d/5b091a2533b08927d52d3208_790x978.jpg" alt=""/>
+                  </div>
+                </div>
+              </div>
+            </div> */}
             <div className="biqBpV">
                   <div className="gsNOod AQZKI">
                     <Icon className="hZzUdy" type="home" />

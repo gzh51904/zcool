@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Icon } from 'antd';
 import '../static/cate.scss';
 import axios from 'axios';
-import Mycontext from '../context/index'
+
 
 import Catehead from '../component/cateComponent/catehead';
 import Catexuan from '../component/cateComponent/catexuan';

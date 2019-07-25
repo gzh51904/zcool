@@ -48,6 +48,7 @@ class Classify extends Component {
             var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
             var jsonObj = eval("(" + jsonStr + ")");
             //将值传到redux仓库存储
+            console.log(jsonObj);
             this.props.addClassifyGoods(jsonObj);
         }
     }
@@ -56,19 +57,31 @@ class Classify extends Component {
     changeAct(index) {//点击切换高亮
         this.setState(this.state = { act: index });
     }
-    goto({id,filt_rule,sort_rule}){
+    goto({ id, filt_rule, sort_rule }) {
         let cdt = JSON.parse(filt_rule);
         let order = JSON.parse(sort_rule);
         cdt.fcate = id
         cdt.sale_type = 2
         let a = JSON.stringify(cdt);
         let b = JSON.stringify(order);
-        let db = '{"cdt" :'+ a+ ',"order" :' + b + '}';
-        this.props.history.push({pathname:"/indexs/cate",query: { name : db }});
+        let db = '{"cdt" :' + a + ',"order" :' + b + '}';
+        let nan = {
+            key: db,
+            type: 50,
+            zhouyi_ids: 'p8_c4_l4',
+            machining: 'danpin',
+            rows: 10,
+            dtype: 'JSONP',
+            price_range: '',
+            cat_threeids: '',
+            filter_id: '',
+            callback: 'gsort_callback'
+        }
+        this.props.history.push({ pathname: "/indexs/cate", query: { name: nan,path :'https://shop.juanpi.com/gsort'} });
     }
     render() {
         let { url,
-             path } = this.props.match;
+            path } = this.props.match;
         return <div className="cate-list">
             {/* 搜索栏 */}
             <ListSearch></ListSearch>
@@ -90,11 +103,11 @@ class Classify extends Component {
             <div className="listright">
                 {
                     this.props.ClassifyGoodList.map((item, index) => {
-                        return <div key={item.id} className="wraper" style={index == this.state.act?{display:"block"}:{display:'none'}}>
+                        return <div key={item.id} className="wraper" style={index == this.state.act ? { display: "block" } : { display: 'none' }}>
                             <div className="third-cate">
                                 {
                                     this.props.ClassifyGoodList[index].secondCateList.map((a, idx) => {
-                                        return <div onClick={this.goto.bind(this,{id:a.id,filt_rule:a.filt_rule,sort_rule : a.sort_rule})} key={a.id} className="catesecond">
+                                        return <div onClick={this.goto.bind(this, { id: a.id, filt_rule: a.filt_rule, sort_rule: a.sort_rule })} key={a.id} className="catesecond">
                                             <a href="javascript:;">
                                                 <img className="imgs" src={'//s2.juancdn.com' + a.icon + '?iopcmd=convert&dst=webp'} alt="a" />
                                                 <span>{a.name}</span>

@@ -20,72 +20,70 @@ class Catelist extends Component {
 
     async componentWillMount() {
         let key = this.props.location.query.name//拿到参数
+        let path = this.props.location.query.path
         let data = await axios.get('http://localhost:3001/catelist', {
             params: {
-                URL: 'https://shop.juanpi.com/gsort',
+                URL: path,
                 type: {
-                    key: key,
-                    type: 50,
-                    zhouyi_ids: 'p8_c4_l4',
-                    machining: 'danpin',
                     page: 1,
-                    rows: 10,
-                    dtype: 'JSONP',
-                    price_range: '',
-                    cat_threeids: '',
-                    filter_id: '',
-                    callback: 'gsort_callback'
+                    ...key
                 }
             }
         })
-        let l = '(';
-        let r = ')';
-        var firstIndex = data.data.indexOf(l);
-        var lastIndex = data.data.lastIndexOf(r);
-        var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
-        var jsonObj = eval("(" + jsonStr + ")");
-        //将数据存入redux
-        // jsonObj.aggs是筛选数据
-        this.props.setcateGoods(jsonObj.list);
-        console.log(this.props)
+        if (typeof (data.data) == 'string') {//判断是否为字符串，如果是字符串则需要切割
+            let l = '(';
+            let r = ')';
+            var firstIndex = data.data.indexOf(l);
+            var lastIndex = data.data.lastIndexOf(r);
+            var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
+            var jsonObj = eval("(" + jsonStr + ")");
+            this.props.setcateGoods(jsonObj.list);//将数据存入redux
+            // jsonObj.aggs是筛选数据
+        } else {
+            let jsonObj = data.data.data
+            this.props.setcateGoods(jsonObj.list);
+            console.log(this.props)
+        }
+
+
 
     }
-    async scrollFn() {
+    scrollFn() {
         let cate = document.querySelector('.cate');
         let windowY = window.scrollY;
-        if ( this.state.rej && windowY >= cate.scrollHeight - 670 ) {//关闭开关
+        if (this.state.rej && windowY >= cate.scrollHeight - 670) {//关闭开关
             this.setState(this.state = { rej: false });
             let newpage = this.state.pages + 1;
             this.setState(this.state = { pages: newpage }); //页码+1
             //到达零界点发送请求
             let key = this.props.location.query.name//拿到参数
+            let path = this.props.location.query.path
             let data = axios.get('http://localhost:3001/catelist', {
                 params: {
-                    URL: 'https://shop.juanpi.com/gsort',
+                    URL: path,
                     type: {
-                        key: key,
-                        type: 50,
-                        zhouyi_ids: 'p8_c4_l4',
-                        machining: 'danpin',
                         page: newpage,
-                        rows: 10,
-                        dtype: 'JSONP',
-                        price_range: '',
-                        cat_threeids: '',
-                        filter_id: '',
-                        callback: 'gsort_callback'
+                        ...key
                     }
                 }
             }).then((data) => {
-                let l = '(';
-                let r = ')';
-                var firstIndex = data.data.indexOf(l);
-                var lastIndex = data.data.lastIndexOf(r);
-                var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
-                var jsonObj = eval("(" + jsonStr + ")");
-                //将数据存入redux
-                // jsonObj.aggs是筛选数据
-                this.props.addcateGoods(jsonObj.list);
+                if (typeof (data.data) == 'string') {//判断是否为字符串，如果是字符串则需要切割
+                    let l = '(';
+                    let r = ')';
+                    var firstIndex = data.data.indexOf(l);
+                    var lastIndex = data.data.lastIndexOf(r);
+                    var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
+                    var jsonObj = eval("(" + jsonStr + ")");
+                    this.props.addcateGoods(jsonObj.list);//将数据存入redux
+                    // jsonObj.aggs是筛选数据
+                } else {
+                    if (data.data.data.list !== undefined) {
+                        let jsonObj = data.data.data
+                        this.props.addcateGoods(jsonObj.list);
+                    } else {
+                        console.log('没有数据了')
+                    }
+                }
             })
         }
         this.setState(this.state = { rej: true });
@@ -105,18 +103,20 @@ class Catelist extends Component {
                     {
                         this.props.cateGoodsList.map((item) => {
                             return (
-                                <li key={item.goods_id} id={item.goods_id}>
+                                <li key={item.goods_id ? item.goods_id : item.title} id={item.goods_id}>
                                     <a className="goodsa" href="javascript:;">
-                                        <img src={item.pic_url} alt="" />
+                                        {
+                                            item.pic_url ? <img src={item.pic_url} alt="" /> : <img src={item.picurl} alt="" />
+                                        }
+
                                     </a>
                                     <a className="clickjs" href="javascript:;">
                                         <div className="listprice">
-                                            <span className="pricenew ">
+                                            <span className="pricenew">
                                                 <i>￥</i>
                                                 {item.cprice}
                                             </span>
                                             <i className="del">¥{item.oprice}</i>
-                                            <span className="onlytime">{item.residue}</span>
                                         </div>
                                         <h3 className="long"> {item.title}</h3>
                                     </a>

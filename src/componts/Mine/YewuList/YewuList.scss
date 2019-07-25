@@ -1,0 +1,21 @@
+.userItem{
+    padding-bottom: 12px;
+    padding-top:15px;
+    background-color:#fff;
+    a{
+        font-size:12px;
+        position: relative;
+    display: inline-block;
+    width: 25%;
+    
+    color: #666 !important;
+    text-align: center;
+    vertical-align: top;
+        i{
+            font-size:28px;
+            display: block;
+        }span{
+            display: block;
+        }
+    } 
+}

@@ -1,0 +1,50 @@
+#head{
+    height: 144px;
+    background: #ff464e;
+    background-image: url('../../../img/user_center_bg.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    border-bottom: none;
+    .userTop{
+        line-height: 44px;
+        height: 44px;
+        #t-goback{
+            padding-right: 14px;
+            padding-left: 14px;
+            // background:#fff;
+            color: #fff;
+            float:left;
+            span{
+                font-size:24px;
+            }
+        }#t-index{
+            color:#fff;
+            padding-right: 44px;
+            padding-left: 44px;
+            line-height: 44px;
+            font-size: 18px;
+            margin-left:-50px;
+        }
+    }.user_login{
+        line-height: 100px;
+        height: 100px;
+        position: relative;
+        font-size:0;
+        text-align: center;
+        a{
+            padding-right: 32px;
+            padding-left:32px;
+            font-size:20px;
+            color:#fff;
+        }i{
+            height: 20px;
+            position: absolute;
+            top: 50%;
+            left:50%;
+            width: 1px;
+            background-color:#fff;
+
+        }
+    }
+}

@@ -1,6 +1,4 @@
 import React,{Component} from 'react';
-// import axios from 'axios';
-import {get,post} from '../request';
 
 import {Route,NavLink,Switch,Redirect} from 'react-router-dom'
 import '../assets/css/list.scss'

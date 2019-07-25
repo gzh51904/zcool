@@ -41,7 +41,7 @@ class Goo2 extends Component{
 
     goto(){
         let {history} = this.props;
-        let cate = "/cate";
+        let cate = "/indexs/cate";
         history.push(cate);
     }
 

@@ -1,24 +1,33 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 
 import Search from '../component/home-Search/Search';
 import Banner from '../component/home-Banner/Banner';
 import Nav from '../component/home-Nav/Nav';
 import Advert from '../component/home-Advert/Advert';
 import Goods from '../component/home-Goods/Goods';
+import { tsThisType } from '@babel/types';
 
-class Home extends Component{
-    render(){
+class Home extends Component {
+    constructor() {
+        super();
+        this.state = {
+
+        }
+        
+    }
+    
+    render() {
         return <div id="home">
             <header>
-                <Search/>
+                <Search />
             </header>
-            <Banner/>
+            <Banner />
             <nav>
-                <Nav/>
+                <Nav />
             </nav>
             <main>
-                <Advert/>
-                <Goods/>
+                <Advert />
+                <Goods />
             </main>
         </div>
     }

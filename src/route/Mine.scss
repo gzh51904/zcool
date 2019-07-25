@@ -1,0 +1,57 @@
+.app{
+    background: #f4f4f8;
+    width: 100%;
+    .userCenter{
+        max-height: 9000rem;
+    }.userBox{
+        max-height: 9000rem;
+        a{
+            font-size:15px;
+            line-height: 32px;
+            height: 32px;
+            display: block;
+            position: relative;
+            background: #fff;
+            color:#333;
+            box-sizing: border-box;
+            overflow: hidden;
+            padding: 0 28px;
+            .label{
+                margin-right: 8px;;
+                font-size:14px;
+
+            }
+        }
+    }
+}
+
+.fl{
+    float: left;
+}
+.fr{
+    float:right;
+}
+
+.userItem{
+    margin-top:10px;
+}
+
+.clearfix{
+    clear: both;
+}
+
+
+.foot_nav{
+    padding-top: .53333rem;
+    padding-bottom: .53333rem;
+    line-height: .53333rem;
+    width: 100%;
+    a{
+        color: #666;
+        font-size: .46933rem;
+        line-height: .53333rem;
+        margin: 0 auto;
+        width: 31%;
+        border-right: 1px solid #ebebeb;
+    }
+}

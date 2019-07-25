@@ -1,14 +1,17 @@
 .list {
     width: 100%;
     justify-content: space-between;
+
     .list_item {
         width: 49.4%;
         float: left;
         margin-right: 0.08533333333333333rem;
         margin-top: 0.08533333333333333rem;
+
         a {
             cursor: pointer;
             flex: 1;
+
             .list_item_content {
                 height: 100%;
                 background-color: #fff;
@@ -17,6 +20,7 @@
                 .list_img {
                     width: 100%;
                     position: relative;
+
                     img {
                         width: 100%;
                         display: block;
@@ -58,6 +62,15 @@
                     white-space: nowrap;
                     text-overflow: ellipsis;
                     margin-bottom: 0.512rem;
+
+                    p {
+                        color: #bbb;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        right: 0.3413333333333333rem;
+                        font-size: 0.4266666666666667rem;
+                    }
                 }
             }
         }

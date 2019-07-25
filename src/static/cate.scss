@@ -1,7 +1,12 @@
 //类目头部
+body{
+    overflow-y:scroll;
+
 .cate{
+    overflow-y:scroll;
     position: relative;
     z-index: 9999;
+    height: 100%;
 
 .heads{
     z-index: 199;
@@ -9,7 +14,7 @@
     width: 100%;
     overflow: inherit;
     position: relative;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #666;
     .fixtop{
         z-index: 999;
     height: 44px;
@@ -116,15 +121,20 @@
 //类目筛选栏
 
 .goodssortscroll{
+    position: '';
+    z-index: 9999;
     .goodssortscrollbox{
+        
         background: #f4f4f8;
         .goodssort{
+
             width: 100%;
     background: #fff;
     max-width: 16rem;
     min-width: 8rem;
     height: 40px;
     .goodssortbox{
+        
         width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
@@ -175,6 +185,8 @@
     min-height: 17.06667rem;
     background-color: #f9f9f9;
     .goodslist{
+        // z-index: 999;
+        height: 100%;
         width: 16.21333rem;
     // display: -ms-flexbox;
     display: flex;
@@ -271,4 +283,5 @@
     }
     }
     }
+}
 }

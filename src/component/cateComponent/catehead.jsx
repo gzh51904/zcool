@@ -1,14 +1,29 @@
 import React,{Component}from 'react';
 import {Icon} from 'antd';
+import {NavLink} from 'react-router-dom'
 
 class Catehead extends Component{
+
+
+    constructor(){
+        super();
+        this.goback = this.goback.bind(this);
+
+    }
+
+    goback(){
+        this.props.gotoback();
+    }
+    
+
     render(){
         return(
     //类目头部
+    
     <div className="heads">
         <div className="fixtop">
             <span className="tfind">
-                <a className="btn" href="javascript:;">
+                <a onClick={this.goback} className="btn" href="javascript:;">
                     <Icon type="left" />
                 </a>
             </span>

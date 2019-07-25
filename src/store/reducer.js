@@ -1,5 +1,6 @@
 import {ADD_TO_MIAOSHA,CHANGE_TO_MIAOSHA_PAGE} from './miaosahAction';//秒杀页
 import {ADD_TO_CLASSIFY_GOODSLIST} from './classifyAction';
+import {SET_TO_CATE,ADD_TO_CATE} from './cateAction';
 
 //初始化仓库
 let initStore = {
@@ -7,7 +8,8 @@ let initStore = {
         goods : [],//商品数据
         page : 1//目前显示页面
     },  
-    ClassifyGoodList : []
+    ClassifyGoodList : [],//class页数据
+    cateGoodsList : []//cate页数据
 }
 let reducer = (state=initStore,action) => {
     switch(action.type){
@@ -32,6 +34,17 @@ let reducer = (state=initStore,action) => {
                 ...state,
                 ClassifyGoodList : [...action.payload]
             }
+        case SET_TO_CATE : //覆盖cate数据
+            return {
+                ...state,
+                cateGoodsList : [...action.payload]
+            }
+        case ADD_TO_CATE : {
+            return {
+                ...state,
+                cateGoodsList : [...state.cateGoodsList,...action.payload]
+            }
+        }
         default :
             return state;
     }

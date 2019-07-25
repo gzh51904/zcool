@@ -28,7 +28,7 @@ class Classify extends Component {
 
     async componentWillMount() {
         if (!this.props.ClassifyGoodList.length) {//节流，判断redux是否有数据了
-            let data = await get('http://localhost:8080/catelist', {
+            let data = await get('http://localhost:3001/catelist', {
                 params: {
                     URL: 'https://m.juanpi.com/cate/catelist',
                     type: {
@@ -49,7 +49,6 @@ class Classify extends Component {
             var jsonObj = eval("(" + jsonStr + ")");
             //将值传到redux仓库存储
             this.props.addClassifyGoods(jsonObj);
-            console.log(this.props);
         }
     }
 
@@ -57,9 +56,15 @@ class Classify extends Component {
     changeAct(index) {//点击切换高亮
         this.setState(this.state = { act: index });
     }
-    goto(id){
-        let db = id;
-        this.props.history.push({pathname:'/indexs/cate/'+ db});
+    goto({id,filt_rule,sort_rule}){
+        let cdt = JSON.parse(filt_rule);
+        let order = JSON.parse(sort_rule);
+        cdt.fcate = id
+        cdt.sale_type = 2
+        let a = JSON.stringify(cdt);
+        let b = JSON.stringify(order);
+        let db = '{"cdt" :'+ a+ ',"order" :' + b + '}';
+        this.props.history.push({pathname:"/indexs/cate",query: { name : db }});
     }
     render() {
         let { url,
@@ -89,7 +94,7 @@ class Classify extends Component {
                             <div className="third-cate">
                                 {
                                     this.props.ClassifyGoodList[index].secondCateList.map((a, idx) => {
-                                        return <div onClick={this.goto.bind(this,a.id)} key={a.id} className="catesecond">
+                                        return <div onClick={this.goto.bind(this,{id:a.id,filt_rule:a.filt_rule,sort_rule : a.sort_rule})} key={a.id} className="catesecond">
                                             <a href="javascript:;">
                                                 <img className="imgs" src={'//s2.juancdn.com' + a.icon + '?iopcmd=convert&dst=webp'} alt="a" />
                                                 <span>{a.name}</span>

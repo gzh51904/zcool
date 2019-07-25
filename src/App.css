@@ -1,6 +1,7 @@
 .App {
   text-align: center;
 }
+body{background-color: #fff;}
 body,html{
     font-size: 23.45px !important;
     height: auto;

@@ -7,12 +7,16 @@ class Gad extends Component{
     constructor(){
         super();
         this.state={
-          active:false
+          currentIndex: 0,
+          mashuIndex:0,
+          yanse:'颜色',
+          mashu:'码数'
         
         }
+        this.setCurrentIndex = this.setCurrentIndex.bind(this)
+        this.setmashuIndex = this.setmashuIndex.bind(this)
         this.boxshow=this.boxshow.bind(this);
         this.boxclose=this.boxclose.bind(this);
-        this.changcol=this.changcol.bind(this);
     }
 
   boxshow(){
@@ -31,16 +35,43 @@ class Gad extends Component{
     spmbox.style.transform='translateY(100%)';
   }
 
-  changcol(){
-    this.setState({active:true})
-
+  setCurrentIndex(event) {
+    this.setState({
+      currentIndex: parseInt(event.currentTarget.getAttribute('index'), 10),
+      yanse:event.currentTarget.getAttribute('text')
+    })
   }
 
+  setmashuIndex(event) {
+    this.setState({
+      mashuIndex: parseInt(event.currentTarget.getAttribute('index'), 10),
+      mashu:event.currentTarget.getAttribute('text')
+    })
+  }
+
+
     render(){
-      // let testClass = classNames({
-      //   "kpMuTa": true,
-      //   gXzicJ: this.state.active
-      // });
+      let categoryArr = ['黑色', '白色', '蓝色', '绿色',
+              '橘色'];
+              let itemList = [];
+    for(let i = 0; i < categoryArr.length; i++) {
+      itemList.push(<div key={i}
+               className={this.state.currentIndex === i ? 'gXzicJ' : 'kpMuTa'}
+               text={categoryArr[i]} index={i} onClick={this.setCurrentIndex}
+             >{categoryArr[i]}</div>);   
+    }
+
+    let mashuArr = ['M', 'S', 'X', 'XL',
+    '均码'];
+    let mashulist = [];
+for(let j = 0; j < mashuArr.length; j++) {
+mashulist.push(<div key={j}
+     className={this.state.mashuIndex === j ? 'gXzicJ' : 'kpMuTa'}
+     text={mashuArr[j]} index={j} onClick={this.setmashuIndex}
+   >{mashuArr[j]}</div>);
+
+   
+}
         return(
           <div className="p3">
             <section></section>
@@ -57,7 +88,7 @@ class Gad extends Component{
             <div className="homj"></div>
             <div className="homj">
               <div onClick={this.boxshow.bind(this)} className="beBVBG">
-                <p className="gSaRQX">已选择： 白色 均码</p>
+                <p className="gSaRQX">已选择： {this.state.yanse} {this.state.mashu}</p>
                 <Icon className="wstDz" type="right" />
               </div>
             </div>
@@ -88,7 +119,7 @@ class Gad extends Component{
                     </div>
                     <div className="kLnIRP">
                       <div className="jHnhrY">￥49</div>
-                      <div className="bECJpj">已选择 白色 均码</div>
+                      <div className="bECJpj">已选择 {this.state.yanse} {this.state.mashu}</div>
                     </div>
                     <div className="jCKkwU">
                       <div>
@@ -99,15 +130,11 @@ class Gad extends Component{
                   <div className="eePJwY">
                     <span className="djINZm">颜色</span>
                     <div className="dRKsrh">
-                      <div className="kpMuTa">黄色</div>
-                      <div className="gXzicJ">白色色</div>
-                      <div className="kpMuTa">黑色色</div>
-                      <div className="kpMuTa">绿色色</div>
-                      <div className="jbxric">橘色</div>
+                    {itemList}
                     </div>
                     <span className="djINZm">尺码</span>
                     <div className="iGRxGB">
-                      <div className="kpMuTa">均码</div>
+                    {mashulist}
                     </div>
                     <div className="hzewHz">
                         <span className="gJDKLw">购买数量</span>

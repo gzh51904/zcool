@@ -18,38 +18,39 @@ class Cate extends Component{
             send : {bool : true},
             location1 :{to : 654}
         }
-       
+        // this.gotoback = this.gotoback.bind(this);
+        // this.scrollFn = this.scrollFn.bind(this);
     }
 
     async  componentDidMount(){
-        let {data} =  await axios.get('http://localhost:3001/catelist',{
-            params:{
-                page:1,
-            }
-        })
-        let l = '(';
-        let r = ')';
-        var firstIndex = data.indexOf(l);
-         var lastIndex = data.lastIndexOf(r);
-         var jsonStr = data.substring(firstIndex,lastIndex+1);
-         var jsonObj = eval("("+jsonStr+")");
-         var datalists = jsonObj.list;
-        //  console.log('fdsfsd',jsonObj)
+        
+        // let {data} =  await axios.get('http://localhost:3001/catelist',{
+        //     params:{
+        //         page:1,
+        //     }
+        // })
+        // let l = '(';
+        // let r = ')';
+        // var firstIndex = data.indexOf(l);
+        //  var lastIndex = data.lastIndexOf(r);
+        //  var jsonStr = data.substring(firstIndex,lastIndex+1);
+        //  var jsonObj = eval("("+jsonStr+")");
+        //  var datalists = jsonObj.list;
      
         //  this.state.datalist = datalists;
-         this.setState(this.state.database1 = datalists);
+        //  this.setState(this.state.database1 = datalists);
         //  this.setState(this.state.database1 = datalists);
         //  //监听鼠标滚动
         // let a = document.querySelector('.categoods');
         // a.addEventListener("scroll", this.scrollFn, true);
          //监听鼠标滚动
-         let a = document.querySelector('.App');
-         a.addEventListener("scroll", this.scrollFn, true);
+        //  let a = document.querySelector('.App');
+        //  a.addEventListener("scroll", this.scrollFn, true);
      
          }
 
-         async scrollFn() {
-            let a = document.querySelector('.App');
+        //  async scrollFn() {
+            // let a = document.querySelector('.App');
             // if(a.scrollHeight - 618 <= a.scrollTop && this.state.send.bool){
             //     //关闭滚动事件  节流
             //     this.setState(this.state.send = {bool : false});
@@ -80,7 +81,7 @@ class Cate extends Component{
             //     tops.style.position = '';
             //     tops.style.top = '';
             // }
-        }
+        // }
 
         
     gotoback(){

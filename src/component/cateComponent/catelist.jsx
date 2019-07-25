@@ -10,7 +10,7 @@ class Catelist extends Component {
             datalist: [],
             pages :1
         }
-        this.goto = this.goto.bind(this)
+        // this.goto = this.goto.bind(this)
     }
 
     async  componentDidMount() {

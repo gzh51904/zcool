@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { array, number } from 'prop-types';
+import { withRouter } from 'react-router-dom';
+
+import { connect } from 'react-redux';//引入redux
+import { bindActionCreators } from 'redux';
+import cateAction from '../../store/cateAction';
 
 class Catelist extends Component {
 
     constructor(props) {
         super();
         this.state = {
-            datalist: [],
-            pages :1
+            pages: 1,
+            rej: true
         }
-        // this.goto = this.goto.bind(this)
+        this.scrollFn = this.scrollFn.bind(this);
     }
 
-    async  componentDidMount() {
-        let { data } = await axios.get('http://localhost:3001/catelist', {
+    async componentWillMount() {
+        let key = this.props.location.query.name//拿到参数
+        let data = await axios.get('http://localhost:3001/catelist', {
             params: {
                 URL: 'https://shop.juanpi.com/gsort',
                 type: {
-                    key: '%7B%22cdt%22%3A%7B%22is_show_presale%22%3A%220%22%2C%22hot_show_type%22%3A1%2C%22fcate%22%3A%2259%22%2C%22sale_type%22%3A2%7D%2C%22order%22%3A%7B%22show_stime%22%3A%22desc%22%2C%22sales%22%3A%22desc%22%2C%22fav%22%3A%22desc%22%2C%22sort%22%3A%22desc%22%7D%7D',
+                    key: key,
                     type: 50,
                     zhouyi_ids: 'p8_c4_l4',
                     machining: 'danpin',
-                    page: 20,
+                    page: 1,
                     rows: 10,
                     dtype: 'JSONP',
                     price_range: '',
@@ -34,49 +40,72 @@ class Catelist extends Component {
         })
         let l = '(';
         let r = ')';
-        var firstIndex = data.indexOf(l);
-        var lastIndex = data.lastIndexOf(r);
-        var jsonStr = data.substring(firstIndex, lastIndex + 1);
+        var firstIndex = data.data.indexOf(l);
+        var lastIndex = data.data.lastIndexOf(r);
+        var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
         var jsonObj = eval("(" + jsonStr + ")");
-        console.log(jsonObj);
-        var pas = jsonObj.page;
-        pas = 1;
-        var datalists = jsonObj.list;
-        this.state.datalist = datalists;
+        //将数据存入redux
+        // jsonObj.aggs是筛选数据
+        this.props.setcateGoods(jsonObj.list);
+        console.log(this.props)
+
     }
-    // async goto() {
-    //     this.setState(this.state = {page : this.state.pages +1})
-    //     let pages = this.state.pages;
-    //     let { data } = await axios.get('http://localhost:3001/catelist', {
-    //         params: {
-    //             URL: 'https://shop.juanpi.com/gsort',
-    //             type: {
-    //                 key: '%7B%22cdt%22%3A%7B%22is_show_presale%22%3A%220%22%2C%22hot_show_type%22%3A1%2C%22fcate%22%3A%2259%22%2C%22sale_type%22%3A2%7D%2C%22order%22%3A%7B%22show_stime%22%3A%22desc%22%2C%22sales%22%3A%22desc%22%2C%22fav%22%3A%22desc%22%2C%22sort%22%3A%22desc%22%7D%7D',
-    //                 type: 50,
-    //                 zhouyi_ids: 'p8_c4_l4',
-    //                 machining: 'danpin',
-    //                 page: pages,
-    //                 rows: 10,
-    //                 dtype: 'JSONP',
-    //                 price_range: '',
-    //                 cat_threeids: '',
-    //                 filter_id: '',
-    //                 callback: 'gsort_callback'
-    //             }
-    //         }
-    //     })
-    // }
+    async scrollFn() {
+        let cate = document.querySelector('.cate');
+        let windowY = window.scrollY;
+        if ( this.state.rej && windowY >= cate.scrollHeight - 670 ) {//关闭开关
+            this.setState(this.state = { rej: false });
+            let newpage = this.state.pages + 1;
+            this.setState(this.state = { pages: newpage }); //页码+1
+            //到达零界点发送请求
+            let key = this.props.location.query.name//拿到参数
+            let data = axios.get('http://localhost:3001/catelist', {
+                params: {
+                    URL: 'https://shop.juanpi.com/gsort',
+                    type: {
+                        key: key,
+                        type: 50,
+                        zhouyi_ids: 'p8_c4_l4',
+                        machining: 'danpin',
+                        page: newpage,
+                        rows: 10,
+                        dtype: 'JSONP',
+                        price_range: '',
+                        cat_threeids: '',
+                        filter_id: '',
+                        callback: 'gsort_callback'
+                    }
+                }
+            }).then((data) => {
+                let l = '(';
+                let r = ')';
+                var firstIndex = data.data.indexOf(l);
+                var lastIndex = data.data.lastIndexOf(r);
+                var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
+                var jsonObj = eval("(" + jsonStr + ")");
+                //将数据存入redux
+                // jsonObj.aggs是筛选数据
+                this.props.addcateGoods(jsonObj.list);
+            })
+        }
+        this.setState(this.state = { rej: true });
+    }
+    componentDidMount() {
+        window.addEventListener('scroll', this.scrollFn, true);
+    }
+    componentWillUnmount() {
+        window.addEventListener('scroll', this.scrollFn, true);
+    }
+
     render() {
-        let dbs = this.props.database
         return (
             //类目商品表
             <div className="categoods" >
                 <ul className="goodslist">
                     {
-                        dbs.map((item) => {
-
+                        this.props.cateGoodsList.map((item) => {
                             return (
-                                <li key={item.goods_id}>
+                                <li key={item.goods_id} id={item.goods_id}>
                                     <a className="goodsa" href="javascript:;">
                                         <img src={item.pic_url} alt="" />
                                     </a>
@@ -87,22 +116,28 @@ class Catelist extends Component {
                                                 {item.cprice}
                                             </span>
                                             <i className="del">¥{item.oprice}</i>
-                                            <span className="onlytime">上新</span>
+                                            <span className="onlytime">{item.residue}</span>
                                         </div>
                                         <h3 className="long"> {item.title}</h3>
                                     </a>
                                 </li>)
                         })
                     }
-
-
                 </ul>
-
             </div>
         )
-
-
+    }
+}
+let mapStateToProps = (state, ownprops) => {
+    return {
+        cateGoodsList: state.cateGoodsList
     }
 }
 
+let mapDispacthToProps = (dispatch, ownprops) => {
+    return bindActionCreators(cateAction, dispatch)
+}
+
+Catelist = connect(mapStateToProps, mapDispacthToProps)(Catelist)
+Catelist = withRouter(Catelist);
 export default Catelist;

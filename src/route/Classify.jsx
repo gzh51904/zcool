@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React,{Component} from 'react';
-
-class Classify extends Component{
-    render(){
-        return (<div>Classify</div>
-        
-        )
-        
-    }
-}
-
-=======
 import React,{Component} from 'react';
 
 import {Route,NavLink,Switch,Redirect} from 'react-router-dom'
@@ -156,5 +143,4 @@ class Classify extends Component{
     }
 }
 
->>>>>>> f879e2e6609ae8fc0d04ab0dcb2a4da9fb24a15a
 export default Classify;

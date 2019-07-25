@@ -11,7 +11,7 @@ class SearchPage extends Component {
         this.searchFN = this.searchFN.bind(this);
     }
     searchFN(value){
-        console.log(this.props)
+        this.props.history.push('/')
     }
     render() {
         return <div className="searchpage">

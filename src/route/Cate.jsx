@@ -18,8 +18,6 @@ class Cate extends Component{
             send : {bool : true},
             location1 :{to : 654}
         }
-        this.gotoback = this.gotoback.bind(this);
-        this.scrollFn = this.scrollFn.bind(this);
        
     }
 

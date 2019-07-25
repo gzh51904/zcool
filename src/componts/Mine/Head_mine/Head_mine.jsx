@@ -10,7 +10,7 @@ function head_mine() {
         <header id="head">
             <div className="userTop">
                 <a href="javasctipt:;" id="t-goback">
-                    <Icon type="arrow-left"     />
+                    <Icon type="arrow-left"/>
                 </a>
                 <span id="t-index">个人中心</span>
             </div>

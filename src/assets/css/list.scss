@@ -1,146 +1,169 @@
-
-.cate-list{
+.cate-list {
     color: #333;
     text-align: center;
-    background-color: #fff!important;
+    background-color: #fff !important;
     font-size: 15px;
     height: 100%;
-.searchbox{
-    margin: .5rem;
-    border: 1px solid #bbb;
-    border-radius: 5px;
-    background-color: #fff;
-    padding: .125rem 0;
-    position: relative;
-    height: auto;
-    overflow: hidden;
-    a{
-        color: #666;
-    .box-search{
-        width: 92%;
-    position: relative;
-    margin-left: 6px;
-    height: 24px;
-    line-height: 24px;
-    padding: 0;
-    vertical-align: middle;
-    background-color: #fff;
-    color: #999;
-    float: left;
-        .sousuo{
-            -webkit-tap-highlight-color: transparent;
-            -webkit-appearance: none;
-            font-size: 13px;
-            width: 90%;
-            left: 0;
-            background-color: transparent;
-            font: -webkit-small-control;
-    font-size: 16px;
-    color: initial;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0;
-    text-shadow: none;
-    display: inline-block;
-    text-align: start;
-    border: none;
-    outline-style: none;
-    word-break: normal;
-    vertical-align: middle;
-    height: 24px;
-    line-height: 24px;
-    margin-left: 25px;
-    position: absolute;
+
+    .searchbox {
+        margin: .5rem;
+        border: 1px solid #bbb;
+        border-radius: 5px;
+        background-color: #fff;
+        padding: .125rem 0;
+        position: relative;
+        height: auto;
+        overflow: hidden;
+
+        a {
+            color: #666;
+
+            .box-search {
+                width: 92%;
+                position: relative;
+                margin-left: 6px;
+                height: 24px;
+                line-height: 24px;
+                padding: 0;
+                vertical-align: middle;
+                background-color: #fff;
+                color: #999;
+                float: left;
+
+                .sousuo {
+                    -webkit-tap-highlight-color: transparent;
+                    -webkit-appearance: none;
+                    font-size: 13px;
+                    width: 90%;
+                    left: 0;
+                    background-color: transparent;
+                    font: -webkit-small-control;
+                    font-size: 16px;
+                    color: initial;
+                    letter-spacing: normal;
+                    word-spacing: normal;
+                    text-transform: none;
+                    text-indent: 0;
+                    text-shadow: none;
+                    display: inline-block;
+                    text-align: start;
+                    border: none;
+                    outline-style: none;
+                    word-break: normal;
+                    vertical-align: middle;
+                    height: 24px;
+                    line-height: 24px;
+                    margin-left: 25px;
+                    position: absolute;
+                }
+            }
+
+            .search-submit {
+                display: block;
+                position: absolute;
+                border: 0 none;
+                background: none;
+                cursor: pointer;
+                line-height: 24px;
+                top: 0;
+
+                img {
+                    height: 24px;
+                    vertical-align: middle;
+                    border: 0;
+                }
+            }
         }
     }
-    .search-submit{
-        display: block;
-        position: absolute;
-        border: 0 none;
-        background: none;
-        cursor: pointer;
-        line-height: 24px;
-        top:0;
-    img{
-        height: 24px;
-    vertical-align: middle;
-    border: 0;
-    }
-    }
-    }
-    }
-    .list-left{
+
+    .list-left {
         float: left;
         width: 25%;
         background: #f9f9f9;
         overflow: hidden;
         font-size: 14px;
-    ul{
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        text-align: left;
-        text-indent: 15px;
-        padding-bottom: 49px;
-        a{
-            display: block;
-        height: 45px;
-    line-height: 45px;
-    position: relative;
-    border-bottom: 1px solid #ebebeb;
-    cursor: pointer;
-    border-left: 4px solid #f9f9f9;
-   color:#333;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            text-indent: 15px;
+            padding-bottom: 49px;
+
+            li {
+                display: block;
+                height: 45px;
+                line-height: 45px;
+                position: relative;
+                border-bottom: 1px solid #ebebeb;
+                cursor: pointer;
+                border-left: 4px solid #f9f9f9;
+                color: #333;
+            }
+
+            .color-red {
+                color: #ff464e;
+                border-left: 4px solid #ff464e;
+                background-color: #fff;
+            }
+        }
     }
 
-    }
-    }
-    .listright{
+    .listright {
         float: left;
-    width: 71%;
-    font-size: 12px;
-    padding-left: 4%;
-        .wraper{
+        width: 71%;
+        font-size: 12px;
+        padding-left: 4%;
+
+        .wraper {
             height: 100%;
-    width: 100%;
-    text-align: left;
-    overflow: hidden;
-    padding-bottom: 49px;
-    .third-cate{
-        
-        width: 100%;
-    // display: -ms-flexbox;
-    display: flex;
-    // -ms-flex-direction: row;
-    flex-direction: row;
-    // -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    padding-bottom: 49px;
-    .catesecond{
-        width: 33%;
-        display: inline-block;
-    text-align: center;
-    height: 4rem;
-    padding: 0 5%;
-    box-sizing: border-box;
-    position: relative;
-    a{color: #666;
-    img{
-        width:100%;
-    }
-    span{
-        color: #333;
-        line-height: 20px;
-    }}
-    }
-    .catebottom{
-        height: 30px;
-        width: 100%;
-        display: inline-block;
-    }
-    }
+            width: 100%;
+            text-align: left;
+            overflow: hidden;
+            padding-bottom: 49px;
+
+            .third-cate {
+
+                width: 100%;
+                // display: -ms-flexbox;
+                display: flex;
+                // -ms-flex-direction: row;
+                flex-direction: row;
+                // -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-top: 10px;
+                padding-bottom: 49px;
+
+                .catesecond {
+                    width: 33%;
+                    display: inline-block;
+                    text-align: center;
+                    height: 4rem;
+                    padding: 0 5%;
+                    box-sizing: border-box;
+                    position: relative;
+
+                    a {
+                        color: #666;
+
+                        img {
+                            width: 100%;
+                        }
+
+                        span {
+                            color: #333;
+                            line-height: 20px;
+                        }
+                    }
+                }
+
+                .catebottom {
+                    height: 30px;
+                    width: 100%;
+                    display: inline-block;
+                }
+            }
         }
     }
 }

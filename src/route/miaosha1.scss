@@ -1,0 +1,115 @@
+.timer {
+    display: block;
+    height: 1.7826rem;
+    width: 100%;
+
+    .timer_box {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        height: 1.7826rem;
+        width: 100%;
+
+        .timer_box_ul {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow-x:auto;
+            z-index: 1;
+            overflow-x:auto; 
+            .timer_left {
+                position: relative;
+                width: auto;
+                height: 100%;
+                overflow-x: auto;
+                z-index: 1;
+                display: flex;
+                transition-property: transform;
+                box-sizing: content-box;
+                .timer_item {
+                    width: 75px;
+                    position: relative;
+                    text-align: center;
+                    color: #6b6b6b;
+                    float: left;
+                    flex:0 0 auto;
+                    p {
+                        vertical-align: middle;
+                        line-height: 1;
+                        color: #fff;
+                    }
+
+                    .num {
+                        padding-top: 8px;
+                        font-size: 14px;
+                    }
+
+                    .txt {
+                        padding-top: 3.9997px;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+.ad{
+    line-height: 41px;
+    font-size: 13px;
+    text-align: center;
+    color: #fff;
+    width: 150px;
+    float: left;
+    flex:0 0 auto;
+}
+.timer_active{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40%;
+    z-index: 0;
+    background: #ff464e;
+    width: 20%;
+    height: 1.7826rem;
+}
+.timer .timer_active:after{
+    content: "";
+    position: absolute;
+    bottom: -.29867rem;
+    left: 0;
+    right: 0;
+    z-index: 18;
+    display: block;
+    height: 0;
+    width: 0;
+    margin: auto;
+    border-top: .34133rem solid #ff464e;
+    border-left: .34133rem solid transparent;
+    border-right: .34133rem solid transparent;
+}
+.timer_active_left{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    background: #30363c;
+    width: 40%;
+    height: 1.7826rem;
+}
+.timer_active_right{
+    position: absolute;
+    top: 0;
+    right:0;
+    z-index: 0;
+    background: #30363c;
+    width: 40%;
+    height: 1.7826rem;
+}
+
+.miaosha_tabs{
+    width: 100%;
+    height: 100%;
+    margin-top: 0.4348rem;
+    background: #000;
+}

@@ -4,7 +4,6 @@ import React,{Component} from 'react';
 import './App.css';
 import './static/base.css';
 import {Route,Redirect} from 'react-router-dom';
-import { TabBar} from 'antd-mobile';
 
 import Home from './route/Home';
 import Car from './route/Car';
@@ -14,13 +13,15 @@ import Cate from './route/Cate';
 import Gdetails from './route/gdetails';
 import SearchPage from './route/SearchPage';
 import Indexs from './route/Indexs';
+import Fengqiang from './route/Fengqiang';
+import Miaosha from './route/Miaosha';
 
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-         
+            
         };
       }
 
@@ -31,6 +32,8 @@ class App extends Component {
             <Route path="/indexs/gdetails" component={Gdetails}/>
             <Route path="/searchpage" component={SearchPage}/>
             <Route path="/indexs" component={Indexs}/>
+            <Route path="/fengqiang" component={Fengqiang}/>
+            <Route path="/miaosha" component={Miaosha}/>
             <Redirect from="/indexs" to="/indexs/home" exact/>
             <Redirect from="/" to="/indexs/home" exact/>
         </div>

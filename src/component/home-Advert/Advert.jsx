@@ -7,7 +7,7 @@ class Advert extends Component {
         return <div className="advert">
             <div className="activity">
                 <div>
-                    <a href="javascript:;"></a>
+                    <a href=""></a>
                 </div>
             </div>
             <div className="recomm">

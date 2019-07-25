@@ -9,8 +9,10 @@
     "jquery": "^3.4.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "redux": "^4.0.4"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -19,7 +21,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "jsx-a11y/anchor-is-valid": "off"
+    }
   },
   "browserslist": {
     "production": [

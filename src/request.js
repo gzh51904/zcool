@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-let instance = axios.create({
-    baseURL: 'https://webservice.juanpi.com'
-})
+// let instance = axios.create({
+//     baseURL: ''
+// })
 
-export function get(url = "", params = {}) {
-    return instance.get(url, params)
+export function get(url = "",params = {}) {
+    return axios.get(url,params)
 }
 
 export function post(url='',data={},params={}){
-    return instance.get(url,data,params)
+    return axios.post(url,data,params)
 }
 
 export default {

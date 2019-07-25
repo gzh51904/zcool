@@ -1,0 +1,213 @@
+.miaosha {
+    .am-tabs-tab-bar-wrap,
+    .am-tabs-default-bar {
+        background: #30363c !important;
+    }
+    .am-tabs-default-bar-nextpage {
+        background: none;
+    }
+
+    .am-tabs-tab-bar-wrap:first-child::before {
+        // position: absolute;
+        content: "精选好货，底价狂欢";
+        font-size: 13px;
+        line-height: 41px;
+        text-align: center;
+        color: #fff;
+        // z-index: 9999;
+        width: 6.5217rem;
+        height: 1.8261rem;
+        display: block;
+        float: left;
+        z-index: -5;
+    }
+
+    .am-tabs-default-bar-tab {
+        display: flex;
+        flex-shrink: 0;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        line-height: 1.3;
+        background: #30363c !important;
+        font-size: 14px;
+    }
+
+    .am-tabs-default-bar-prevpage {
+        background: none;
+    }
+}
+
+.goodsBox {
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+    .goodsList {
+        margin-top: .42667rem;
+        background: #fff;
+        .goodsItem {
+            background: #fff;
+            position: relative;
+            padding: .512rem 0;
+            margin: 0 .512rem;
+            border-bottom: 1px solid #e7e7e7;
+            overflow: hidden;
+            a {
+                display: block;
+                clear: both;
+                color: #666;
+
+                .imgbox {
+                    width: 4.05333rem;
+                    height: 4.05333rem;
+                    position: relative;
+                    float: left;
+
+                    img {
+                        opacity: 1;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        transition: opacity .5s linear;
+                        position: absolute;
+                    }
+                }
+
+                .infobox {
+                    position: relative;
+                    padding: 0 0 0 .512rem;
+                    height: 4.05333rem;
+                    width: 10.41067rem;
+                    float: right;
+
+                    .goods_name {
+                        color: #333;
+                        font-size: .59733rem;
+                        text-align: left;
+                        width: 100%;
+                        line-height: 1.2;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                    }
+
+                    .goods_price {
+                        position: absolute;
+                        bottom: .74667rem;
+                        text-align: left;
+                        line-height: 1;
+
+                        .tip {
+                            color: #ff464e;
+                            font-size: .512rem;
+                            font-style: normal;
+                        }
+
+
+                        .now_price {
+                            font-size: .85333rem;
+                            color: #ff464e;
+                            font-style: normal;
+                        }
+
+                        .goods_old_price {
+                            font-size: .42667rem;
+                            color: #bbb;
+                            text-decoration: line-through;
+                            font-style: normal;
+                        }
+                    }
+
+                    .progress {
+                        position: absolute;
+                        bottom: 0;
+                        width: 5.97333rem;
+                        height: .59733rem;
+                        line-height: .59733rem;
+                        border-radius: .59733rem;
+                        background: #ffb1b4;
+                        text-align: center;
+                        overflow: hidden;
+
+                        .cover-bar {
+                            width: 48%;
+                            transform: translateX(0);
+                            font-style: normal;
+                            height: .59733rem;
+                            border-radius: .59733rem;
+                            position: absolute;
+                            background: #ff464e;
+                            top: 0;
+                            left: 0;
+                            transition: transform .5s;
+                        }
+
+                        .txt {
+                            color: #fff;
+                            font-style: normal;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 1;
+                            display: inline-block;
+                            text-align: center;
+                            width: 100%;
+                            height: .59733rem;
+                            line-height: .59733rem;
+                            font-size: 12px;
+                        }
+                    }
+                    .limit-count{
+                        position: absolute;
+                        bottom: 1.70667rem;
+                        color: #4c4;
+                        font-size: .512rem;
+                        text-align: left;
+                    }
+                    .residue_span{
+                        color: #0a2;
+                        font-size: 24px;
+                        position: absolute;
+                        z-index: 5;
+                        right: 0;
+                        bottom: 1.49333rem;
+                        font-size: 12px;
+                    }
+                }
+
+                .buy_btn {
+                    position: absolute;
+                    font-size: .512rem;
+                    text-align: center;
+                    text-decoration: none;
+                    right: 0;
+                    bottom: 0;
+                    display: block;
+                    width: 2.98667rem;
+                    height: 1.28rem;
+                    background: #ff464e;
+                    color: #fff;
+                    line-height: 1.28rem;
+                }
+                .collect_btn{
+                    position: absolute;
+                    z-index: 5;
+                    right: 0;
+                    bottom: 0;
+                    display: block;
+                    width: 2.98667rem;
+                    height: 1.28rem;
+                    border: 1px solid #0a2;
+                    background-color: #0a2;
+                    color: #fff;
+                    font-size: .512rem;
+                    text-align: center;
+                    line-height: 1.28rem;
+                    text-decoration: initial;
+                }
+            }
+        }
+    }
+}

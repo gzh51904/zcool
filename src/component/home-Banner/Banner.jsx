@@ -35,7 +35,7 @@ class Banner extends Component {
                     {this.state.data.map(val => (
                         <a
                             key={val}
-                            href="http://www.alipay.com"
+                            href="javascript:;"
                             style={{ display: 'inline-block', width: '100%' }}
                         >
                             <img

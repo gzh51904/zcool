@@ -28,8 +28,7 @@ class Miaosha extends Component {
             let arrs = data.data.data.time_tabs.reverse();
             arrs.map((item) => {
                 this.props.addmiaosha(item);
-            })
-            console.log(this.props); //设置到redux仓库存起来
+            }) //设置到redux仓库存起来
         }
     }
     timestampToTime(timestamp) {

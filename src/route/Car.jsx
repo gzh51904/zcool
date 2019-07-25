@@ -15,7 +15,7 @@ class Car extends Component{
 
     comeback(){
         var {history} = this.props;
-        var cates = "/indexs/cate/59";
+        var cates = "/indexs/cate";
         history.push(cates);
         // console.log('dfsfs',this.props.history);
     }

@@ -4,19 +4,24 @@ import {Icon} from 'antd';
 
 
 class Gad extends Component{
-    constructor(){
+    constructor(props){
         super();
         this.state={
           currentIndex: 0,
           mashuIndex:0,
           yanse:'颜色',
-          mashu:'码数'
+          mashu:'码数',
+          shul:'1'
         
         }
+        
+
         this.setCurrentIndex = this.setCurrentIndex.bind(this)
         this.setmashuIndex = this.setmashuIndex.bind(this)
         this.boxshow=this.boxshow.bind(this);
         this.boxclose=this.boxclose.bind(this);
+        this.addshul=this.addshul.bind(this);
+        this.jianshul=this.jianshul.bind(this);
     }
 
   boxshow(){
@@ -49,10 +54,30 @@ class Gad extends Component{
     })
   }
 
+  //增加数量
+  addshul(){
+    let nums = document.querySelector('.iMLzwQ');
+    let zjz = this.state.shul;
+    zjz++;
+    this.setState({shul:zjz})
+  }
+    //减少数量
+    jianshul(){
+      let jian = document.querySelector('.iMLzwQ');
+      let jianz = this.state.shul;
+      
+      if(this.state.shul > 1){
+        jianz--;
+      }
+      this.setState({shul:jianz});
+    }
+
 
     render(){
-      let categoryArr = ['黑色', '白色', '蓝色', '绿色',
-              '橘色'];
+      let shuju = this.props.data;
+      let yan = this.props.yanse;
+      let mas = this.props.mashu;
+      let categoryArr = yan;
               let itemList = [];
     for(let i = 0; i < categoryArr.length; i++) {
       itemList.push(<div key={i}
@@ -61,8 +86,7 @@ class Gad extends Component{
              >{categoryArr[i]}</div>);   
     }
 
-    let mashuArr = ['M', 'S', 'X', 'XL',
-    '均码'];
+    let mashuArr = mas;
     let mashulist = [];
 for(let j = 0; j < mashuArr.length; j++) {
 mashulist.push(<div key={j}
@@ -97,7 +121,8 @@ mashulist.push(<div key={j}
               <div>
                 <div className="gHyDBV">
                   <div className="iWGNAQ">
-                    <img className="iwQlpP" src="https://goods5.juancdn.com/bao/170420/8/2/58f86720a43d1f0671769a5a_180x90.png?iopcmd=convert&Q=88&dst=png" alt=""/>
+                    {/* 小图片 */}
+                    <img className="iwQlpP" src="https://goods5.juancdn.com/bao/170309/9/9/58c1186aa43d1f717a5117f3_180x90.png?iopcmd=convert&Q=88&dst=png"/>
                   </div>
                   <div className="ewzTJI">
                     <div className="eAUfqE">艾路丝婷女装小店</div>
@@ -145,7 +170,8 @@ mashulist.push(<div key={j}
                 <div>
                   <div className="jYjmxa">
                     <div className="kdcqpr">
-                      <img className="gGteGu" src="https://goods2.juancdn.com/goods/190511/3/e/5cd6337f33b089078d45a318_800x800.jpg?imageMogr2/thumbnail/200x200!/quality/80!/format/jpg" alt=""/>
+                      {/* 商品小图 */}
+                      <img className="gGteGu" src={shuju.goods_pic_url} alt=""/>
                     </div>
                     <div className="kLnIRP">
                       <div className="jHnhrY">￥49</div>
@@ -169,9 +195,9 @@ mashulist.push(<div key={j}
                     <div className="hzewHz">
                         <span className="gJDKLw">购买数量</span>
                      <div className="fecqhx">
-                       <span className="dGBIdN">-</span>
-                       <span className="iMLzwQ">1</span>
-                       <span className="dcPVBu">+</span>
+                       <span onClick={this.jianshul.bind(this)} className="dGBIdN">-</span>
+                       <span className="iMLzwQ">{this.state.shul}</span>
+                       <span onClick={this.addshul.bind(this)} className="dcPVBu">+</span>
                      </div>
                     </div>
                   </div>

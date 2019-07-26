@@ -29,7 +29,7 @@ class App extends Component {
 
     render(){return <div className="App">
             <Route path="/indexs/cate" component={Cate}/>
-            <Route path="/indexs/gdetails" component={Gdetails}/>
+            <Route path="/indexs/gdetails/:id" component={Gdetails}/>
             <Route path="/searchpage" component={SearchPage}/>
             <Route path="/indexs" component={Indexs}/>
             <Route path="/fengqiang" component={Fengqiang}/>

@@ -13,7 +13,7 @@ class Catelist extends Component {
         super();
         this.state = {
             pages: 1,
-            rej: true
+            rej: true,
         }
         this.scrollFn = this.scrollFn.bind(this);
     }
@@ -48,6 +48,8 @@ class Catelist extends Component {
         // jsonObj.aggs是筛选数据
         this.props.setcateGoods(jsonObj.list);
         console.log(this.props)
+        //跳转详情
+        this.gotodet=this.gotodet.bind(this);
 
     }
     async scrollFn() {
@@ -92,9 +94,24 @@ class Catelist extends Component {
     }
     componentDidMount() {
         window.addEventListener('scroll', this.scrollFn, true);
+      
     }
     componentWillUnmount() {
         window.addEventListener('scroll', this.scrollFn, true);
+    }
+
+
+    //点击跳转到详情页面
+   gotodet(id){
+    let {history} = this.props;
+
+        let pathname = '/indexs/gdetails/'+id;console.log('id',id,pathname)
+
+        history.push({
+            pathname
+        })
+
+
     }
 
     render() {
@@ -103,9 +120,9 @@ class Catelist extends Component {
             <div className="categoods" >
                 <ul className="goodslist">
                     {
-                        this.props.cateGoodsList.map((item) => {
+                        this.props.cateGoodsList.map((item,idx) => {
                             return (
-                                <li key={item.goods_id} id={item.goods_id}>
+                                <li  onClick={this.gotodet.bind(this,item.goods_id)}  key={item.goods_id} id={item.goods_id}>
                                     <a className="goodsa" href="javascript:;">
                                         <img src={item.pic_url} alt="" />
                                     </a>

@@ -11,7 +11,12 @@ class SearchPage extends Component {
         this.searchFN = this.searchFN.bind(this);
     }
     searchFN(value){
-        this.props.history.push('/')
+        let nan = {
+            keyword:value,
+            user_groupids:'p8_c4_l4_222',
+            is_ajax:1
+        }
+        this.props.history.push({ pathname: "/indexs/cate", query: { name: nan,path : 'https://m.juanpi.com/search' } });
     }
     render() {
         return <div className="searchpage">

@@ -13,7 +13,7 @@ class Catelist extends Component {
         super();
         this.state = {
             pages: 1,
-            rej: true
+            rej: true,
         }
         this.scrollFn = this.scrollFn.bind(this);
     }
@@ -85,7 +85,7 @@ class Catelist extends Component {
                 }
             })
         }
-        console.log(this.props)
+        // console.log(this.props)
         this.setState(this.state = { rej: true });
     }
     componentDidMount() {
@@ -110,10 +110,11 @@ class Catelist extends Component {
                 return _record.sort((a, b) => {
                     return  parseInt(a.start_time) - parseInt(b.start_time)
                 })
-            default:
+            case '推荐':
                 return _record.sort((a, b) => {
-                    return  parseInt(a.zg_cat_topid) - parseInt(b.zg_cat_topid)
+                    return parseInt(b.zg_cat_topid) -  parseInt(a.zg_cat_topid)
                 })
+            default : return this.props.cateGoodsList.goods;
         }
     }
 

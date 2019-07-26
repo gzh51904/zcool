@@ -3,7 +3,6 @@ import { Icon } from 'antd';
 import '../static/cate.scss';
 import axios from 'axios';
 
-
 import Catehead from '../component/cateComponent/catehead';
 import Catexuan from '../component/cateComponent/catexuan';
 import Catelist from '../component/cateComponent/catelist';
@@ -23,8 +22,6 @@ class Cate extends Component {
             location1: { to: 654 }
         }
     }
-2
-
 
     gotoback() {
         let { history } = this.props;

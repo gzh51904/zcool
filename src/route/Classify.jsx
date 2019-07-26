@@ -48,7 +48,7 @@ class Classify extends Component {
             var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
             var jsonObj = eval("(" + jsonStr + ")");
             //将值传到redux仓库存储
-            console.log(jsonObj);
+            // console.log(jsonObj);
             this.props.addClassifyGoods(jsonObj);
         }
     }

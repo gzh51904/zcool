@@ -42,7 +42,6 @@ class Catelist extends Component {
         } else {
             let jsonObj = data.data.data
             this.props.setcateGoods(jsonObj.list);
-            console.log(this.props)
         }
 
 
@@ -86,24 +85,48 @@ class Catelist extends Component {
                 }
             })
         }
+        console.log(this.props)
         this.setState(this.state = { rej: true });
     }
     componentDidMount() {
         window.addEventListener('scroll', this.scrollFn, true);
     }
     componentWillUnmount() {
-        window.addEventListener('scroll', this.scrollFn, true);
+        window.removeEventListener('scroll', this.scrollFn, true);
+        this.scrollFn = null
+    }
+    Dressing() {
+        let _record = this.props.cateGoodsList.goods;
+        switch (this.props.cateGoodsList.status) {
+            case '价格':
+                return _record.sort((a, b) => {
+                    return a.cprice - b.cprice
+                })
+            case '销量':
+                return _record.sort((a, b) => {
+                    return parseInt(a.inventory) -  parseInt(b.inventory)
+                })
+            case '上新':
+                return _record.sort((a, b) => {
+                    return  parseInt(a.start_time) - parseInt(b.start_time)
+                })
+            default:
+                return _record.sort((a, b) => {
+                    return  parseInt(a.zg_cat_topid) - parseInt(b.zg_cat_topid)
+                })
+        }
     }
 
     render() {
+        let arr_sort = this.Dressing();
         return (
             //类目商品表
             <div className="categoods" >
                 <ul className="goodslist">
                     {
-                        this.props.cateGoodsList.map((item) => {
+                        arr_sort.map((item) => {
                             return (
-                                <li key={item.goods_id ? item.goods_id : item.title} id={item.goods_id}>
+                                <li key={item.id ? item.id : item.goods_id} id={item.goods_id}>
                                     <a className="goodsa" href="javascript:;">
                                         {
                                             item.pic_url ? <img src={item.pic_url} alt="" /> : <img src={item.picurl} alt="" />

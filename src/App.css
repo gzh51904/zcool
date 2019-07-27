@@ -1,6 +1,8 @@
 .App {
   text-align: center;
+  background-color:#f4f4f8;
 }
+body{background-color:#f4f4f8;}
 body,html{
     font-size: 23.45px !important;
     height: auto;
@@ -46,4 +48,7 @@ body,html{
   }
   #tab-bar .demo-preview-item .am-tab-bar {
     background-color: white;
+  }
+  .am-tab-bar-item{
+    background-color:#f4f4f8;
   }

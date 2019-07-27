@@ -20,7 +20,7 @@ class Miaosha extends Component {
         if (!this.props.miaoshaList.goods.length) {
             //store没有数据就请求数据
             //设置到redux仓库存起来
-            let data = await get('http://localhost:8081/search', {
+            let data = await get('http://localhost:3001/search', {
                 params: {
                     URL: 'https://m.juanpi.com/act/timebuy-xrgoodslist'
                 }
@@ -28,8 +28,7 @@ class Miaosha extends Component {
             let arrs = data.data.data.time_tabs.reverse();
             arrs.map((item) => {
                 this.props.addmiaosha(item);
-            })
-            console.log(this.props); //设置到redux仓库存起来
+            }) //设置到redux仓库存起来
         }
     }
     timestampToTime(timestamp) {

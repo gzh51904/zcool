@@ -54,6 +54,7 @@ class Catelist extends Component {
         let a = document.querySelector('.categoods');
         let b = document.querySelector('.goodslist');
         if (this.state.rej && (a.scrollTop + document.documentElement.clientHeight) >= (b.offsetHeight+80)) {//关闭开关
+            console.log(1);
             this.setState(this.state = { rej: false });
             let newpage = this.state.pages + 1;
             this.setState(this.state = { pages: newpage }); //页码+1
@@ -77,6 +78,7 @@ class Catelist extends Component {
                     var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
                     var jsonObj = eval("(" + jsonStr + ")");
                     this.props.addcateGoods(jsonObj.list);//将数据存入redux
+                    this.setState(this.state = { rej: true });
                     // jsonObj.aggs是筛选数据
                 } else {
                     if (data.data.data.list !== undefined) {
@@ -85,18 +87,17 @@ class Catelist extends Component {
                     } else {
                         console.log('没有数据了')
                     }
+                    this.setState(this.state = { rej: true });
                 }
-                this.setState(this.state = { rej: true });
+                
             })
         }
     }
     componentDidMount() {
-        let a = document.querySelector('.categoods');
-        a.addEventListener('scroll', this.scrollFn, true);
+        window.addEventListener('scroll', this.scrollFn, true);
     }
     componentWillUnmount() {
-        let a = document.querySelector('.categoods');
-        a.removeEventListener('scroll', this.scrollFn, true);
+        window.removeEventListener('scroll', this.scrollFn, true);
         this.scrollFn = null
     }
     Dressing() {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom'
 import '../assets/css/list.scss'
 
 import { bindActionCreators } from 'redux';//引入redux
@@ -77,7 +76,9 @@ class Classify extends Component {
             filter_id: '',
             callback: 'gsort_callback'
         }
+        // let name = "https://shop.juanpi.com/gsort?key:"+ db+",type: 50,zhouyi_ids:p8_c4_l4,machining: 'danpin'rows: 10,dtype: 'JSONP',price_range: '',cat_threeids: '',filter_id: '',callback: 'gsort_callback'"
         this.props.history.push({ pathname: "/cate", query: { name: nan,path :'https://shop.juanpi.com/gsort'} });
+        // this.props.history.push({ pathname: "/cate/"+name});
     }
     render() {
         let { url,path } = this.props.match;
@@ -120,31 +121,8 @@ class Classify extends Component {
                 }
                 <div className="catebottom"></div>
             </div>
-
             {/* 列表右侧*/}
-            {/* <Listright/> */}
-            {/* <Switch>
-                <Route path={path + "/goo1"} component={Goo1} />
-                <Route path={path + "/goo2"} component={Goo2} />
-                <Route path={path + "/goo3"} component={Goo1} />
-                <Route path={path + "/goo4"} component={Goo2} />
-                <Route path={path + "/goo5"} component={Goo1} />
-                <Route path={path + "/goo6"} component={Goo2} />
-                <Route path={path + "/goo7"} component={Goo1} />
-                <Route path={path + "/goo8"} component={Goo2} />
-                <Route path={path + "/goo9"} component={Goo1} />
-                <Route path={path + "/goo10"} component={Goo2} />
-                <Route path={path + "/goo11"} component={Goo1} />
-                <Route path={path + "/goo12"} component={Goo2} />
-                <Route path={path + "/goo13"} component={Goo1} />
-            </Switch> */}
-
-
         </div>
-
-
-
-
     }
 }
 let mapStateToProps = (state, ownprops) => {
@@ -157,7 +135,6 @@ let mapStateToProps = (state, ownprops) => {
 let mapDispatchToProps = (dispatch, ownprops) => {
     //这里写自定义修改store的方法dispatch
     return bindActionCreators(classifyAction, dispatch)
-
 }
 
 Classify = connect(mapStateToProps, mapDispatchToProps)(Classify);

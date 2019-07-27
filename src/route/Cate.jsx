@@ -20,20 +20,20 @@ class Cate extends Component {
             send: { bool: true },
             location1: { to: 654 }
         }
-        this.gotoback = this.gotoback.bind(this);
+        // this.gotoback = this.gotoback.bind(this);
     }
 
-    gotoback() {
-        let { history } = this.props;
-        let cate = "/indexs/classify";
-        history.push(cate);
-    }
+    // gotoback() {
+    //     let { history } = this.props;
+    //     let cate = "/indexs/classify";
+    //     history.push(cate);
+    // }
 
     render() {
         return (
             <div className="cate">
                 {/* 类目头部 */}
-                <Catehead gotoback={this.gotoback} />
+                <Catehead/>
                 {/* 类目筛选栏 */}
                 
                 {/* 类目商品表 */}

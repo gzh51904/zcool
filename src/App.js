@@ -9,6 +9,7 @@ import Home from './route/Home';
 import Car from './route/Car';
 import Classify from './route/Classify';
 import Mine from './route/Mine';
+
 import Cate from './route/Cate';
 import Gdetails from './route/gdetails';
 import SearchPage from './route/SearchPage';
@@ -27,15 +28,15 @@ class App extends Component {
 
 
 
-    render(){return <div className="App">
+    render(){return <div className="App" style={{background:'#fff'}}>
             <Route path="/cate" component={Cate}/>
             <Route path="/gdetails/:id" component={Gdetails}/>
             <Route path="/searchpage" component={SearchPage}/>
             <Route path="/indexs" component={Indexs}/>
             <Route path="/fengqiang" component={Fengqiang}/>
             <Route path="/miaosha" component={Miaosha}/>
-            <Redirect from="/indexs" to="/indexs/home" exact/>
-            <Redirect from="/" to="/indexs/home" exact/>
+            {/* <Redirect from="/indexs" to="/indexs/home" exact/>
+            <Redirect from="/" to="/indexs/home" exact/> */}
         </div>
     }
 

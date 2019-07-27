@@ -1,18 +1,18 @@
-import React,{Component}from 'react';
+import React,{Component} from 'react';
 import {Icon} from 'antd';
-import {NavLink} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
 
 class Catehead extends Component{
 
 
-    constructor(){
+    constructor(props){
         super();
         this.goback = this.goback.bind(this);
 
     }
 
     goback(){
-        this.props.gotoback();
+        this.props.history.goBack(-1);
     }
     
 
@@ -48,5 +48,5 @@ class Catehead extends Component{
 
     }
 }
-
+Catehead = withRouter(Catehead)
 export default Catehead;

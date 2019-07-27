@@ -1,0 +1,68 @@
+.reg_box{
+    width: 100%;
+    height:1000px;
+    background: #fff;
+}
+
+.fixtop{
+    height: 44px;
+    background: #fff;
+    z-index: 999;
+    position: absolute;
+    width: 100%;
+   
+    .t-fine{
+        display: block;
+       width: 45px;
+       height: 45px;
+        img{
+            width: 100%;
+            height:100%;
+        }
+    }#t-index{
+        font-size: 18px;
+        line-height: 44px;
+        height: 44px;
+        text-align: center;
+        cursor: default;
+        width: 100%;
+        text-indent: 5%;
+        position: absolute;
+        left:0;
+        top:0;
+        padding-left: 36px;
+        padding-right: 36px;
+        z-index: -1;
+        box-sizing: border-box;
+        color: #333;
+        font-size: 18px;
+        line-height: 44px;
+        height: 44px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+.am-list{
+    margin-top:35px;
+}
+.PUMA{
+    font-size: 14px;
+    line-height: 32px;
+    height: 32px;
+    position: absolute;
+    top: 92px;
+    right: 44px;
+    color: #999;
+}
+
+.red{
+    font-size: 14px;
+    line-height: 32px;
+    height: 32px;
+    position: absolute;
+    top: 92px;
+    right: 22px;
+    color:red;
+}

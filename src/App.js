@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 
 // import logo from './logo.svg';
 import './App.css';
@@ -16,6 +16,8 @@ import SearchPage from './route/SearchPage';
 import Indexs from './route/Indexs';
 import Fengqiang from './route/Fengqiang';
 import Miaosha from './route/Miaosha';
+import Reg from './componts/Mine/reg';
+import Login from './componts/Mine/login';
 
 
 class App extends Component {
@@ -24,7 +26,7 @@ class App extends Component {
         this.state = {
             
         };
-      }
+    }
 
 
 

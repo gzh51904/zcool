@@ -3,7 +3,7 @@ import React,{Component} from 'react';
 
 
 class Gdinf extends Component{
-    constructor(){
+    constructor(props){
         super();
         this.state={
         
@@ -11,6 +11,7 @@ class Gdinf extends Component{
     }
 
     render(){
+      let shuju = this.props.data;
         return(
      
           <section className="p2">
@@ -19,18 +20,18 @@ class Gdinf extends Component{
                 <div className="infTL">
                   <span className="infTLS">
                     <span className="Price">
-                      <span>￥</span>39
+                      <span>￥</span>{shuju.cprice}
                     </span>
                     <span className="cikhXQ">
-                      ￥79
+                      ￥{shuju.oprice}
                     </span>
                   </span>
                   <span className="eCpHpu">包邮</span>
                 </div>
-                <span className="infTR">2153人已购</span>
+                <span className="infTR">{shuju.join_number}</span>
               </div>
               <div className="infB">
-                <p className="eiWZln">很仙的连帽短袖t恤衫女2019夏装新款宽松拼色涂鸦半袖体恤上衣潮</p>
+                <p className="eiWZln">{shuju.goods_title}</p>
                 <button className="djnbop"></button>
               </div>
 

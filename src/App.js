@@ -28,8 +28,13 @@ class App extends Component {
 
 
     render(){return <div className="App">
+<<<<<<< HEAD
             <Route path="/cate" component={Cate}/>
             <Route path="/indexs/gdetails" component={Gdetails}/>
+=======
+            <Route path="/indexs/cate" component={Cate}/>
+            <Route path="/indexs/gdetails/:id" component={Gdetails}/>
+>>>>>>> 3328dd077685ff99208063829833d95e60b7ec3e
             <Route path="/searchpage" component={SearchPage}/>
             <Route path="/indexs" component={Indexs}/>
             <Route path="/fengqiang" component={Fengqiang}/>

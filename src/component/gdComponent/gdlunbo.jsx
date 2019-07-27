@@ -3,7 +3,7 @@ import { Carousel, WingBlank } from 'antd-mobile';
 
 
 class Gdlunbo extends Component{
-    constructor(){
+    constructor(props){
         super();
         this.state={
             det:[{
@@ -17,6 +17,7 @@ class Gdlunbo extends Component{
     }
 
     render(){
+      let pict = this.props.tupian;
         return(
         
                 <section className="p1">
@@ -35,7 +36,7 @@ class Gdlunbo extends Component{
               style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
             >
               <img
-                src={item.pic}
+                src={pict}
                 alt=""
                 style={{ width: '100%', verticalAlign: 'top' }}
                 onLoad={() => {

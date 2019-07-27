@@ -71,7 +71,7 @@ class Indexs extends Component{
             key="Koubei"
             selected={this.state.selectedTab === 'redTab'}
             onPress={() => {
-                this.props.history.push('/indexs/classify/goo1');
+                this.props.history.push('/indexs/classify');
                 this.setState({
                     selectedTab: 'redTab',
                 });

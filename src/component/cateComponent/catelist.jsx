@@ -36,21 +36,18 @@ class Catelist extends Component {
                 }
             }
         })
-        if (typeof (data.data) == 'string') {//判断是否为字符串，如果是字符串则需要切割
-            let l = '(';
-            let r = ')';
-            var firstIndex = data.data.indexOf(l);
-            var lastIndex = data.data.lastIndexOf(r);
-            var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
-            var jsonObj = eval("(" + jsonStr + ")");
-            this.props.setcateGoods(jsonObj.list);//将数据存入redux
-            // jsonObj.aggs是筛选数据
-        } else {
-            let jsonObj = data.data.data
-            this.props.setcateGoods(jsonObj.list);
-        }
-
-
+        let l = '(';
+        let r = ')';
+        var firstIndex = data.data.indexOf(l);
+        var lastIndex = data.data.lastIndexOf(r);
+        var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
+        var jsonObj = eval("(" + jsonStr + ")");
+        //将数据存入redux
+        // jsonObj.aggs是筛选数据
+        this.props.setcateGoods(jsonObj.list);
+        console.log(this.props)
+        //跳转详情
+        this.gotodet=this.gotodet.bind(this);
 
     }
     scrollFn() {
@@ -153,6 +150,7 @@ class Catelist extends Component {
         </List>);
         let arr_sort = this.Dressing();
         return (
+<<<<<<< HEAD
             <div className="listbox">
                 {/* 类目筛选栏 */}
                 <Catexuan drawer={this.onOpenChange.bind(this)}/>
@@ -196,7 +194,6 @@ class Catelist extends Component {
                         </ul>
                     </div>
                 </Drawer>
-
             </div>
         )
     }

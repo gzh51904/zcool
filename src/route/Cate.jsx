@@ -20,11 +20,12 @@ class Cate extends Component {
             send: { bool: true },
             location1: { to: 654 }
         }
+        this.gotoback = this.gotoback.bind(this);
     }
 
     gotoback() {
         let { history } = this.props;
-        let cate = "/indexs/classify/goo1";
+        let cate = "/indexs/classify";
         history.push(cate);
     }
 

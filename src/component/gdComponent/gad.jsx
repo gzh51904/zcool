@@ -4,15 +4,24 @@ import {Icon} from 'antd';
 
 
 class Gad extends Component{
-    constructor(){
+    constructor(props){
         super();
         this.state={
-          active:false
+          currentIndex: 0,
+          mashuIndex:0,
+          yanse:'颜色',
+          mashu:'码数',
+          shul:'1'
         
         }
+        
+
+        this.setCurrentIndex = this.setCurrentIndex.bind(this)
+        this.setmashuIndex = this.setmashuIndex.bind(this)
         this.boxshow=this.boxshow.bind(this);
         this.boxclose=this.boxclose.bind(this);
-        this.changcol=this.changcol.bind(this);
+        this.addshul=this.addshul.bind(this);
+        this.jianshul=this.jianshul.bind(this);
     }
 
   boxshow(){
@@ -31,16 +40,62 @@ class Gad extends Component{
     spmbox.style.transform='translateY(100%)';
   }
 
-  changcol(){
-    this.setState({active:true})
-
+  setCurrentIndex(event) {
+    this.setState({
+      currentIndex: parseInt(event.currentTarget.getAttribute('index'), 10),
+      yanse:event.currentTarget.getAttribute('text')
+    })
   }
 
+  setmashuIndex(event) {
+    this.setState({
+      mashuIndex: parseInt(event.currentTarget.getAttribute('index'), 10),
+      mashu:event.currentTarget.getAttribute('text')
+    })
+  }
+
+  //增加数量
+  addshul(){
+    let nums = document.querySelector('.iMLzwQ');
+    let zjz = this.state.shul;
+    zjz++;
+    this.setState({shul:zjz})
+  }
+    //减少数量
+    jianshul(){
+      let jian = document.querySelector('.iMLzwQ');
+      let jianz = this.state.shul;
+      
+      if(this.state.shul > 1){
+        jianz--;
+      }
+      this.setState({shul:jianz});
+    }
+
+
     render(){
-      // let testClass = classNames({
-      //   "kpMuTa": true,
-      //   gXzicJ: this.state.active
-      // });
+      let shuju = this.props.data;
+      let yan = this.props.yanse;
+      let mas = this.props.mashu;
+      let categoryArr = yan;
+              let itemList = [];
+    for(let i = 0; i < categoryArr.length; i++) {
+      itemList.push(<div key={i}
+               className={this.state.currentIndex === i ? 'gXzicJ' : 'kpMuTa'}
+               text={categoryArr[i]} index={i} onClick={this.setCurrentIndex}
+             >{categoryArr[i]}</div>);   
+    }
+
+    let mashuArr = mas;
+    let mashulist = [];
+for(let j = 0; j < mashuArr.length; j++) {
+mashulist.push(<div key={j}
+     className={this.state.mashuIndex === j ? 'gXzicJ' : 'kpMuTa'}
+     text={mashuArr[j]} index={j} onClick={this.setmashuIndex}
+   >{mashuArr[j]}</div>);
+
+   
+}
         return(
           <div className="p3">
             <section></section>
@@ -57,10 +112,41 @@ class Gad extends Component{
             <div className="homj"></div>
             <div className="homj">
               <div onClick={this.boxshow.bind(this)} className="beBVBG">
-                <p className="gSaRQX">已选择： 白色 均码</p>
+                <p className="gSaRQX">已选择： {this.state.yanse} {this.state.mashu}</p>
                 <Icon className="wstDz" type="right" />
               </div>
             </div>
+            {/* 店铺 */}
+            <div className="homj">
+              <div>
+                <div className="gHyDBV">
+                  <div className="iWGNAQ">
+                    {/* 小图片 */}
+                    <img className="iwQlpP" src="https://goods5.juancdn.com/bao/170309/9/9/58c1186aa43d1f717a5117f3_180x90.png?iopcmd=convert&Q=88&dst=png"/>
+                  </div>
+                  <div className="ewzTJI">
+                    <div className="eAUfqE">艾路丝婷女装小店</div>
+                    <div className="WySNi">共14件商品</div>
+                  </div>
+                  <div className="jinru">
+                    <a className="dsGqKv" href="jacascript:;">
+                      <span className="ebsHjU">进入店铺</span>
+                      <Icon className="efcxPt" type="right" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* 商品图片 */}
+            {/* <div className="homj">
+              <div className="kNAwVG">
+                <div className="epeevU">
+                  <div className="dyihyA">
+                    <img className="fNsQUK" src="https://goods2.juancdn.com/goods/180526/2/d/5b091a2533b08927d52d3208_790x978.jpg" alt=""/>
+                  </div>
+                </div>
+              </div>
+            </div> */}
             <div className="biqBpV">
                   <div className="gsNOod AQZKI">
                     <Icon className="hZzUdy" type="home" />
@@ -84,11 +170,12 @@ class Gad extends Component{
                 <div>
                   <div className="jYjmxa">
                     <div className="kdcqpr">
-                      <img className="gGteGu" src="https://goods2.juancdn.com/goods/190511/3/e/5cd6337f33b089078d45a318_800x800.jpg?imageMogr2/thumbnail/200x200!/quality/80!/format/jpg" alt=""/>
+                      {/* 商品小图 */}
+                      <img className="gGteGu" src={shuju.goods_pic_url} alt=""/>
                     </div>
                     <div className="kLnIRP">
                       <div className="jHnhrY">￥49</div>
-                      <div className="bECJpj">已选择 白色 均码</div>
+                      <div className="bECJpj">已选择 {this.state.yanse} {this.state.mashu}</div>
                     </div>
                     <div className="jCKkwU">
                       <div>
@@ -99,22 +186,18 @@ class Gad extends Component{
                   <div className="eePJwY">
                     <span className="djINZm">颜色</span>
                     <div className="dRKsrh">
-                      <div className="kpMuTa">黄色</div>
-                      <div className="gXzicJ">白色色</div>
-                      <div className="kpMuTa">黑色色</div>
-                      <div className="kpMuTa">绿色色</div>
-                      <div className="jbxric">橘色</div>
+                    {itemList}
                     </div>
                     <span className="djINZm">尺码</span>
                     <div className="iGRxGB">
-                      <div className="kpMuTa">均码</div>
+                    {mashulist}
                     </div>
                     <div className="hzewHz">
                         <span className="gJDKLw">购买数量</span>
                      <div className="fecqhx">
-                       <span className="dGBIdN">-</span>
-                       <span className="iMLzwQ">1</span>
-                       <span className="dcPVBu">+</span>
+                       <span onClick={this.jianshul.bind(this)} className="dGBIdN">-</span>
+                       <span className="iMLzwQ">{this.state.shul}</span>
+                       <span onClick={this.addshul.bind(this)} className="dcPVBu">+</span>
                      </div>
                     </div>
                   </div>

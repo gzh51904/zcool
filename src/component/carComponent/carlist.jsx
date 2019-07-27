@@ -5,8 +5,36 @@ class Carlist extends Component{
     constructor(){
         super();
         this.state={
+            shul:'1'
 
         }
+        this.addshul=this.addshul.bind(this);
+        this.jianshul=this.jianshul.bind(this);
+    }
+
+      //增加数量
+  addshul(){
+    let nums = document.querySelector('.increase');
+    let zjzs = Number(document.querySelector('.amount').text) ;
+
+    let zjz = this.state.shul;
+    zjzs = zjz;
+    zjz++;
+    this.setState({shul:zjz})
+    // console.log(zjzs)
+  }
+    //减少数量
+    jianshul(){
+      let jian = document.querySelector('.decrease');
+      let zjzs = Number(document.querySelector('.amount').text) ;
+
+      let jianz = this.state.shul;
+      zjzs = jianz;
+      
+      if(this.state.shul > 1){
+        jianz--;
+      }
+      this.setState({shul:jianz});
     }
 
     render(){
@@ -62,9 +90,9 @@ class Carlist extends Component{
                                         </p>
                                         <p className="num fr">
                                             <span className="changeNum">
-                                                <i className="decrease no">-</i>
-                                                <input className="amount" type="text"/>
-                                                <i className="increase">+</i>
+                                                <i onClick={this.jianshul.bind(this)} className="decrease no">-</i>
+                                                <input placeholder={this.state.shul}  className="amount" type="text"/>
+                                                <i onClick={this.addshul.bind(this)} className="increase">+</i>
                                             </span>
                                             <span className="showNum">X1</span>
                                         </p>

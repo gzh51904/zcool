@@ -16,6 +16,7 @@ class Catelist extends Component {
             rej: true,
         }
         this.scrollFn = this.scrollFn.bind(this);
+        this.gotodet = this.gotodet.bind(this);
     }
 
     async componentWillMount() {
@@ -30,20 +31,6 @@ class Catelist extends Component {
                 }
             }
         })
-<<<<<<< HEAD
-        let l = '(';
-        let r = ')';
-        var firstIndex = data.data.indexOf(l);
-        var lastIndex = data.data.lastIndexOf(r);
-        var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
-        var jsonObj = eval("(" + jsonStr + ")");
-        //将数据存入redux
-        // jsonObj.aggs是筛选数据
-        this.props.setcateGoods(jsonObj.list);
-        console.log(this.props)
-        //跳转详情
-        this.gotodet=this.gotodet.bind(this);
-=======
         if (typeof (data.data) == 'string') {//判断是否为字符串，如果是字符串则需要切割
             let l = '(';
             let r = ')';
@@ -59,7 +46,6 @@ class Catelist extends Component {
         }
 
 
->>>>>>> 858b627580555f4052c074036729cd565f2cdaab
 
     }
     scrollFn() {
@@ -154,15 +140,9 @@ class Catelist extends Component {
             <div className="categoods" >
                 <ul className="goodslist">
                     {
-<<<<<<< HEAD
-                        this.props.cateGoodsList.map((item,idx) => {
-                            return (
-                                <li  onClick={this.gotodet.bind(this,item.goods_id)}  key={item.goods_id} id={item.goods_id}>
-=======
                         arr_sort.map((item) => {
                             return (
-                                <li key={item.id ? item.id : item.goods_id} id={item.goods_id}>
->>>>>>> 858b627580555f4052c074036729cd565f2cdaab
+                                <li onClick={this.gotodet.bind(this,item.goods_id)} key={item.id ? item.id : item.goods_id} id={item.goods_id}>
                                     <a className="goodsa" href="javascript:;">
                                         {
                                             item.pic_url ? <img src={item.pic_url} alt="" /> : <img src={item.picurl} alt="" />

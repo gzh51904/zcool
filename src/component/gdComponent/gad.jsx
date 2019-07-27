@@ -1,14 +1,14 @@
 import React,{Component} from 'react';
 import {Icon} from 'antd';
-
+import axios from 'axios';
 
 
 class Gad extends Component{
     constructor(props){
         super();
         this.state={
-          currentIndex: 0,
-          mashuIndex:0,
+          currentIndex: '',
+          mashuIndex:'',
           yanse:'颜色',
           mashu:'码数',
           shul:'1'
@@ -22,6 +22,7 @@ class Gad extends Component{
         this.boxclose=this.boxclose.bind(this);
         this.addshul=this.addshul.bind(this);
         this.jianshul=this.jianshul.bind(this);
+        this.jiaru=this.jiaru.bind(this);
     }
 
   boxshow(){
@@ -44,7 +45,9 @@ class Gad extends Component{
     this.setState({
       currentIndex: parseInt(event.currentTarget.getAttribute('index'), 10),
       yanse:event.currentTarget.getAttribute('text')
+      
     })
+    let lisu = parseInt(event.currentTarget.getAttribute('index'), 10);
   }
 
   setmashuIndex(event) {
@@ -72,12 +75,41 @@ class Gad extends Component{
       this.setState({shul:jianz});
     }
 
+    //加入购物车
+  async  jiaru(){
+      let yans = this.state.yanse;
+      let mas = this.state.mashu;
+      let spname = this.props.data.goods_title;
+      let spic = this.props.data.goods_origin_url;
+      let spri = this.props.data.fprice;
+      let sori = this.props.data.oprice;
+
+      axios.post('http://localhost:3001/cart',{
+        yans,
+        mas,
+        spname,
+        spic,
+        spri,
+        sori
+      }).then(({data})=>{
+        if(data.code==1000){
+          alert('添加商品成功')
+        }else{
+          alert('xixi')
+        }
+      })
+ 
+
+    }
+
 
     render(){
       let shuju = this.props.data;
       let yan = this.props.yanse;
       let mas = this.props.mashu;
+      let xiaotu = this.props.pics;
       let categoryArr = yan;
+      let xis = this.state.currentIndex;
               let itemList = [];
     for(let i = 0; i < categoryArr.length; i++) {
       itemList.push(<div key={i}
@@ -171,7 +203,7 @@ mashulist.push(<div key={j}
                   <div className="jYjmxa">
                     <div className="kdcqpr">
                       {/* 商品小图 */}
-                      <img className="gGteGu" src={shuju.goods_pic_url} alt=""/>
+                      <img className="gGteGu" src={xiaotu[0+xis]} alt=""/>
                     </div>
                     <div className="kLnIRP">
                       <div className="jHnhrY">￥49</div>
@@ -201,7 +233,7 @@ mashulist.push(<div key={j}
                      </div>
                     </div>
                   </div>
-                  <div className="ixMtuT">确定</div>
+                  <div onClick={this.jiaru.bind(this)} className="ixMtuT">确定</div>
                 </div>
               </div>
             </div>

@@ -14,7 +14,7 @@ class Catexuan extends Component{
         this._gain = this._gain.bind(this);
     }
     componentDidMount(){
-        console.log(this.props)
+        // console.log(this.props)
     }
     _gain(val){
         //改变仓库cate的状态status

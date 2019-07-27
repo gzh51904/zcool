@@ -77,11 +77,10 @@ class Classify extends Component {
             filter_id: '',
             callback: 'gsort_callback'
         }
-        this.props.history.push({ pathname: "/indexs/cate", query: { name: nan,path :'https://shop.juanpi.com/gsort'} });
+        this.props.history.push({ pathname: "/cate", query: { name: nan,path :'https://shop.juanpi.com/gsort'} });
     }
     render() {
-        let { url,
-            path } = this.props.match;
+        let { url,path } = this.props.match;
         return <div className="cate-list">
             {/* 搜索栏 */}
             <ListSearch></ListSearch>

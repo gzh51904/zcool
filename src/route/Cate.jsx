@@ -4,7 +4,6 @@ import '../static/cate.scss';
 import axios from 'axios';
 
 import Catehead from '../component/cateComponent/catehead';
-import Catexuan from '../component/cateComponent/catexuan';
 import Catelist from '../component/cateComponent/catelist';
 
 import {connect} from 'react-redux';//引入redux
@@ -35,7 +34,7 @@ class Cate extends Component {
                 {/* 类目头部 */}
                 <Catehead gotoback={this.gotoback} />
                 {/* 类目筛选栏 */}
-                <Catexuan />
+                
                 {/* 类目商品表 */}
                 <Catelist />
             </div>

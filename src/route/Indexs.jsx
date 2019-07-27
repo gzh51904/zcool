@@ -18,6 +18,10 @@ class Indexs extends Component {
             hidden: false,
         }
     }
+    componentDidMount(){
+        console.log(this.props);
+        
+    }
     render() {
         return (
             <>
@@ -54,7 +58,7 @@ class Indexs extends Component {
                         }}
                         />
                         }
-                        selected={this.state.selectedTab === 'blueTab'}
+                        selected={this.props.location.pathname === '/indexs/home'}
                         onPress={() => {
                             this.props.history.push('/indexs/home');
                             this.setState({
@@ -83,7 +87,7 @@ class Indexs extends Component {
                         }
                         title="分类"
                         key="Koubei"
-                        selected={this.state.selectedTab === 'redTab'}
+                        selected={this.props.location.pathname === '/indexs/classify'}
                         onPress={() => {
                             this.props.history.push('/indexs/classify');
                             this.setState({
@@ -112,7 +116,7 @@ class Indexs extends Component {
                         }
                         title="购物车"
                         key="Friend"
-                        selected={this.state.selectedTab === 'greenTab'}
+                        selected={this.props.location.pathname === '/indexs/car'}
                         onPress={() => {
                             this.props.history.push('/indexs/car');
                             this.setState({
@@ -136,7 +140,7 @@ class Indexs extends Component {
                         />}
                         title="我的卷皮"
                         key="my"
-                        selected={this.state.selectedTab === 'yellowTab'}
+                        selected={this.props.location.pathname === '/indexs/mine'}
                         onPress={() => {
                             this.props.history.push('/indexs/mine');
                             this.setState({

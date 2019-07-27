@@ -1,5 +1,4 @@
 import {ADD_TO_MIAOSHA,CHANGE_TO_MIAOSHA_PAGE} from './miaosahAction';//秒杀页
-
 //初始化仓库
 let initStore = {
     miaoshaGoodsList : {//秒杀页商品数据

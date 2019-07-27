@@ -124,7 +124,8 @@ class login extends Component {
     //点击下一步，验证码符合则登录
     handleClick() {
         // console.log(this.inputRef.state.value)
-
+        // let tel = this.autoFocusInst.state.value
+        // console.log(tel)
         if (this.autoFocusInst.state.value.length == 0) {
             //手机号码非空验证
             this.PhoneNumNoEmpry(this)
@@ -136,6 +137,8 @@ class login extends Component {
                 if (this.state.Code.toLocaleLowerCase() == this.inputRef.state.value.toLocaleLowerCase()) {
                     //验证码正确，即将跳转首页
                     this.CodeIsTrue(this)
+
+                  
                     setTimeout(() => {
                         this.props.history.push('/indexs/home')
                     }, 1000);

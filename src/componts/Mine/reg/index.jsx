@@ -46,6 +46,15 @@ class reg extends Component {
                         //验证成功，把用户的手机号码存进数据库
                         Axios.post('http://localhost:3001/reg', { tel: tel })
 
+                        //储存cookie值
+                        function setCookie(name,value,n){
+                            var oDate = new Date();
+                            oDate.setDate(oDate.getDate()+n);
+                            document.cookie = name+"="+value+";expires="+oDate;
+                        }
+                        
+                        setCookie('tel',tel,7)
+
                         //跳转首页
                         setTimeout(() => {
                             this.props.history.push('/indexs/home')

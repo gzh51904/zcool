@@ -21,11 +21,39 @@ class reg extends Component {
         this.phoneNumber = this.phoneNumber.bind(this)
         this.showToast = this.showToast.bind(this)
         this.RandomCode = this.RandomCode.bind(this)
+        this.nextRED = this.nextRED.bind(this)
+
         this.state = {
             Code: '',
-            disabled: false
+            disabled: false,
+            nextClassname: '',
+            SendCode:false
         }
 
+    }
+    randomCode4() {
+        //随机验证码
+        var html = '0987654321zxcvbnmkjhgfdsaqwertyuioplZXCVBNMLKJHGFDSAQWERTYUIOP';
+        var num = ''; //存四位数的
+        for (var i = 0; i < 4; i++) {
+            //随机数范围：0-html.length-1
+            var now = parseInt(Math.random() * html.length); //0-html.length-1
+            num += html[now];
+        }
+
+        return num; //返回
+    }
+    randomCode11() {
+        //随机验证码
+        var html = '0987654321zxcvbnmkjhgfdsaqwertyuioplZXCVBNMLKJHGFDSAQWERTYUIOP';
+        var num = ''; //存四位数的
+        for (var i = 0; i < 11; i++) {
+            //随机数范围：0-html.length-1
+            var now = parseInt(Math.random() * html.length); //0-html.length-1
+            num += html[now];
+        }
+
+        return num; //返回
     }
     //注册成功则跳转首页
     handleClick = async () => {
@@ -42,18 +70,24 @@ class reg extends Component {
                 if (Code.value) {
                     //比对验证码的正确
                     if (this.state.Code.toLocaleLowerCase() == this.inputRef.state.value.toLocaleLowerCase()) {
+                       
+                        //验证码验证成功
                         this.regSucc(this)
-                        //验证成功，把用户的手机号码存进数据库
-                        Axios.post('http://localhost:3001/reg', { tel: tel })
+                        //验证成功，把用户的手机号码存进数据库，随机生成用户名并存进数据库
+
+                        let username = 'juanpi_' + this.randomCode11(this);
+
+
+                        Axios.post('http://localhost:3001/reg', { tel: tel, username: username })
 
                         //储存cookie值
-                        function setCookie(name,value,n){
+                        function setCookie(name, value, n) {
                             var oDate = new Date();
-                            oDate.setDate(oDate.getDate()+n);
-                            document.cookie = name+"="+value+";expires="+oDate;
+                            oDate.setDate(oDate.getDate() + n);
+                            document.cookie = name + "=" + value + ";expires=" + oDate;
                         }
-                        
-                        setCookie('tel',tel,7)
+
+                        setCookie('username', username, 1)
 
                         //跳转首页
                         setTimeout(() => {
@@ -69,12 +103,21 @@ class reg extends Component {
         } else {
             this.NoZero(this)
         }
-
-
-
-
-
         // console.log(this.autoFocusInst.state.value)//电话号码
+    }
+    nextRED() {
+        if (this.state.Code.toLocaleLowerCase() == this.inputRef.state.value.toLocaleLowerCase()){
+        
+            //按钮变红
+            this.setState({
+                nextClassname: 'nextRed'
+            })
+        }else{
+             //按钮变灰
+             this.setState({
+                nextClassname: ''
+            })
+        }
     }
 
     showToast() {
@@ -101,60 +144,53 @@ class reg extends Component {
     regNoEmpty() {
         Toast.info('验证码为空？', 1);
     }
+    
 
 
     //点击发送验证码
     RandomCode() {
         //获取手机号码
         let tel = this.autoFocusInst.state.value;
-        if(tel.length == 0) {
+        if (tel.length == 0) {
             this.NoZero(this)
-        }else{
-            Axios.get('http://localhost:3001/checkTel', {
-            params: {
-                tel: tel
-            }
-        }).then(({ data }) => {
-            let code = data.code
-            if (code == 1000) {
-                this.showToast(this)
-
-
-                function randomCode() {
-                    //随机验证码
-                    var html = '0987654321zxcvbnmkjhgfdsaqwertyuioplZXCVBNMLKJHGFDSAQWERTYUIOP';
-                    var num = ''; //存四位数的
-                    for (var i = 0; i < 4; i++) {
-                        //随机数范围：0-html.length-1
-                        var now = parseInt(Math.random() * html.length); //0-html.length-1
-                        num += html[now];
+        } else {
+            if(this.state.SendCode) {
+                Axios.get('http://localhost:3001/checkTel', {
+                    params: {
+                        tel: tel
                     }
-
-                    return num; //返回
-                }
-                //num为验证码
-                let num = randomCode();
-
-                console.log(num)
-                this.state.Code = num;
-                Axios.post('http://localhost:3001/PhoneCode', {
-                    tel: tel,
-                    num: num
+                }).then(({ data }) => {
+                    let code = data.code
+                    if (code == 1000) {
+                        this.showToast(this)
+    
+    
+    
+                        //num为验证码
+                        let num = this.randomCode4(this);
+    
+                        console.log(num)
+                        this.state.Code = num;
+                        Axios.post('http://localhost:3001/PhoneCode', {
+                            tel: tel,
+                            num: num
+                        })
+                        // this.refs.RandomCode.disabled=true
+                        console.log(this.refs.RandomCode.props.disabled)
+                        this.setState({
+                            disabled: true
+                        })
+                    } else {
+                        this.PhoneisNoTrue(this)
+                    }
+                    // console.log(code)
+    
                 })
-                // this.refs.RandomCode.disabled=true
-                console.log(this.refs.RandomCode.props.disabled)
-                this.setState({
-                    disabled: true
-                })
-            } else {
-                this.PhoneisNoTrue(this)
             }
-            console.log(code)
-
-        })
+           
         }
 
-        
+
 
     }
 
@@ -174,8 +210,14 @@ class reg extends Component {
                     let code = data.code
                     if (code == 1000) {
                         this.PhoneisTrue(this)
+                        this.setState({
+                            SendCode:true
+                        })
                     } else {
                         this.PhoneisNoTrue(this)
+                        this.setState({
+                            SendCode:false
+                        })
                     }
 
 
@@ -190,10 +232,8 @@ class reg extends Component {
     }
 
     gotoMine() {
-        this.props.history.push('/indexs/mine')
+        this.props.history.goBack(-1);
     }
-
-
 
     render() {
         return (
@@ -224,12 +264,15 @@ class reg extends Component {
                                 placeholder="输入验证码"
                                 type='text'
                                 ref={el => this.inputRef = el}
-
+                                onKeyUp={this.nextRED}
                             >
                             </InputItem>
                             <List.Item>
                                 <div style={{ marginTop: '25px', background: '#dbdbdb', textAlign: 'center', fontSize: '18px', lineHeight: '60px', height: '60px', color: '#fff' }}
-                                    onClick={this.handleClick}>
+                                    onClick={this.handleClick}
+                                    className={this.state.nextClassname}
+                                    ref="next"
+                                >
                                     下一步
                                 </div>
                             </List.Item>

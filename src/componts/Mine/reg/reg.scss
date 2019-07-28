@@ -46,6 +46,11 @@
 
 .am-list{
     margin-top:35px;
+    width: 100% !important;
+}
+body .am-list-body {
+    position: relative;
+    padding: 0 !important;
 }
 .PUMA{
     font-size: 14px;
@@ -65,4 +70,12 @@
     top: 92px;
     right: 22px;
     color:red;
+}
+
+.nextRed{
+    background: #ff464e !important;
+    // line-height: 32px;
+    // height: 32px;
+    // font-size:18px; 
+    color:#fff;
 }

@@ -37,8 +37,10 @@ class App extends Component {
             <Route path="/indexs" component={Indexs}/>
             <Route path="/fengqiang" component={Fengqiang}/>
             <Route path="/miaosha" component={Miaosha}/>
-            {/* <Redirect from="/indexs" to="/indexs/home" exact/>
-            <Redirect from="/" to="/indexs/home" exact/> */}
+            <Route path="/reg" component={Reg}/>
+            <Route path="/login" component={Login}/>
+            <Redirect from="/indexs" to="/indexs/home" exact/>
+            <Redirect from="/" to="/indexs/home" exact/>
         </div>
     }
 

@@ -97,15 +97,16 @@
         clear: both;
         float: left;
         text-align: right;
-        padding-left:40px;
-        .ck{
-            width: 0;
-            height: 0;
-            left: 0;
-            top: 0;
-            opacity: 0;  
-           
-        }.before{
+        padding-left:0.875rem;
+        // .ck{
+        //     width: 0;
+        //     height: 0;
+        //     left: 0;
+        //     top: 0;
+        //     opacity: 0;  
+
+        // }
+        .before{
             display: inline-block;
             top:4px;
             margin-top:17px;

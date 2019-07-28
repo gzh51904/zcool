@@ -23,6 +23,7 @@ class Gad extends Component{
         this.addshul=this.addshul.bind(this);
         this.jianshul=this.jianshul.bind(this);
         this.jiaru=this.jiaru.bind(this);
+        this.gotoshop=this.gotoshop.bind(this);
     }
 
   boxshow(){
@@ -113,6 +114,11 @@ class Gad extends Component{
 
     }
 
+    //跳转购物车
+    gotoshop(){
+      this.props.gotoshop()
+    }
+
 
 
     render(){
@@ -196,7 +202,7 @@ mashulist.push(<div key={j}
                     <Icon className="hZzUdy" type="home" />
                     <span className="jFebcI">首页</span>
                   </div>
-                  <div className="jIGqoB iVwfSH">
+                  <div onClick={this.gotoshop.bind(this)} className="jIGqoB iVwfSH">
                   <Icon className="gLOWyV" type="shopping-cart" />
                     <span className="ktUUzU">购物车</span>
                   </div>

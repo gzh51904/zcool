@@ -5,19 +5,21 @@ import {Checkbox} from 'antd-mobile';
 
 
 class Carlist extends Component{
-    constructor(){
+    constructor(props){
         super();
         this.state={
             shul:'1',
             jianl:'1',
-            datas:[],
-            delarr:[],
-            oks:true
+            // datas:[],
+            // delarr:[],
+            oks:'',
+            checkeds:''
+           
 
         }
         this.addshul=this.addshul.bind(this);
         this.jianshul=this.jianshul.bind(this);
-        this.opcheck=this.opcheck.bind(this);
+        // this.opcheck=this.opcheck.bind(this);
     }
 
       //增加数量
@@ -33,9 +35,9 @@ class Carlist extends Component{
     zjz++;
     
     zjzs[inds].placeholder = zjz;
-    let gid = this.state.datas[inds].gid
-    let yans = this.state.datas[inds].yans
-    let mas = this.state.datas[inds].mas
+    let gid = this.props.datas[inds].gid
+    let yans = this.props.datas[inds].yans
+    let mas = this.props.datas[inds].mas
     let sps = zjzs[inds].placeholder
     
     let data = await axios.post('http://localhost:3001/cart/upda',[
@@ -56,9 +58,9 @@ class Carlist extends Component{
         jianz--;
       }
       zjzs[inds].placeholder = jianz;
-      let gid = this.state.datas[inds].gid
-      let yans = this.state.datas[inds].yans
-      let mas = this.state.datas[inds].mas
+      let gid = this.props.datas[inds].gid
+      let yans = this.props.datas[inds].yans
+      let mas = this.props.datas[inds].mas
       let sps = zjzs[inds].placeholder
 
       let data = await axios.post('http://localhost:3001/cart/upda',[
@@ -67,33 +69,92 @@ class Carlist extends Component{
     ])
     }
 
-   async  componentDidMount(){
-        let guser = localStorage.getItem('username')
-        let {data} = await axios.post('http://localhost:3001/cart/find',[
-            {DataBaseName:"Cart"},
-            {'guser':guser}
-        ])
-        this.setState({datas:data})
-        console.log(data)
-    }
 
-    opcheck(event){
+
+   async opchecks(event){
+        // console.log(this.props)
         // var onds = event.currentTarget.getAttribute('checked');
         // document.querySelector('am-checkbox')
         // console.log('fsdfsf',Boolean(onds))
-        // let gids = event.currentTarget.getAttribute('index')
-        // let rgid = this.state.datas[gids].gid;
+        let inds = event.currentTarget.getAttribute('index')
+        let ibox = document.querySelectorAll('.item_body')
+        let iboxs = ibox[inds].getAttribute('index');
+        
+        
+        let rgid = this.props.datas[inds].gid;
+        let yans = this.props.datas[inds].yans;
+        let mas = this.props.datas[inds].mas;
+        // this.props.opcheck(rgid)
         // this.setState({delarr:rgid})
+       
+        // if(inds === iboxs){
+        //     var oks = this.state.oks;
+        //     if(oks){
+        //         this.props.opcheck({rgid,yans,mas})
+        //     }else{
+        //         this.props.opcheck('')
+        //     }
+        //     this.setState({oks:!oks})
+        // }
+        // var oks = true;
+        // if(inds === iboxs){
+            
+        //      this.setState({oks:oks})
+        //     var oks = this.state.oks;
+        // if(oks){
+            
+        //      event.currentTarget.setAttribute('checked',true);
+        //     this.props.opcheck({rgid,yans,mas})
+            
+        // }else{
+            
+        //     event.currentTarget.setAttribute('checked',false);
+        //      this.props.opcheck('')
+            
+        // }
+        // await  this.setState({oks:!oks})
+        // }else{
+        //     this.setState({oks:!oks})
+        // }
+        // var swhj = event.currentTarget.getAttribute('checkeds');
+        // console.log(swhj)
+        // if(swhj === true){
+        //     event.currentTarget.setAttribute('check',false);
+        //   await  this.setState({checkeds:false})
+        // }else{
+        //     event.currentTarget.setAttribute('check',true);
+        //    await this.setState({checkeds:true})
+        // }
+        
+        // console.log(swhj)
+        // if(swhj == true){
+        //     console.log('oooooooooooooo')
+        // }
+        
         var oks = this.state.oks;
         if(oks){
-            event.currentTarget.setAttribute('check',true);
+            await  event.currentTarget.setAttribute('checkeds',false);
+            this.props.opcheck('')
+            
+           
+            
         }else{
-            event.currentTarget.removeAttribute('check',true);
+            await  event.currentTarget.setAttribute('checkeds',true);
+            this.props.opcheck({rgid,yans,mas})
+            
+            
         }
-        this.setState({oks:!oks})
+       await this.setState({oks:!oks})
+
+        // var swhj =  event.currentTarget.getAttribute('checkeds')
+        // if(swhj === true){
+        //     event.currentTarget.setAttribute('checkeds',false);
+        // }
+        // console.log(swhj)
         
 
     }
+
 
     render(){
         return(
@@ -116,9 +177,9 @@ class Carlist extends Component{
                 </div>
             </div>
             {
-                this.state.datas.map((item,idx)=>{
+                this.props.datas.map((item,idx)=>{
                     return(          
-                <div index={idx} key={item.gid} className="item_body">
+                <div index={idx} key={idx} className="item_body">
                     <div className="item_group">
                         {/* <a className="marketing" href="jacascript:;">
                             <div className="tag">满件减</div>
@@ -130,7 +191,7 @@ class Carlist extends Component{
                                     {/* <span index={idx} onClick={this.opcheck.bind(this)} className="amcheckbox">
                                     <Checkbox  className="checkbox" defaultChecked/>
                                     </span> */}
-                                    <input className="checkboxs" index={idx} onClick={this.opcheck.bind(this)} type="checkbox"/>
+                                    <input  className="checkboxs" index={idx} onClick={this.opchecks.bind(this)} type="checkbox"/>
                                 </div>
                                 <a className="good_info clear" href="javascript:;">
                                     <div className="pic">

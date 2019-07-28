@@ -18,6 +18,7 @@ class Gdetails extends Component{
             picobj:'',
             gid:''
         }
+        this.gotoshop=this.gotoshop.bind(this);
     }
 
   async componentDidMount(){
@@ -61,6 +62,13 @@ class Gdetails extends Component{
         
     }
 
+    gotoshop(){
+        var {history} = this.props;
+        var shop = "/indexs/car";
+        history.push(shop);
+        console.log('dfsfs',this.props.history);
+    }
+
 
     
 
@@ -73,6 +81,7 @@ class Gdetails extends Component{
             <Gdinf data={this.state.det}/>
             {/* 购买选择 */}
             <Gad
+            gotoshop={this.gotoshop}
             gid={this.state.gid}
             data={this.state.det} 
             yanse={this.state.skuqu} 

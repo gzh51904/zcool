@@ -26,7 +26,7 @@ class Cate extends Component {
     gotoback() {
         let { history } = this.props;
         let cate = "/indexs/classify";
-        history.push(cate);
+        history.goBack();
     }
 
     render() {

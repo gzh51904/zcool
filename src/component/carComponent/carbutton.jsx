@@ -3,7 +3,7 @@ import {Checkbox} from 'antd-mobile';
 
 
 class Carbutton extends Component{
-    constructor(){
+    constructor(props){
         super();
         this.state={
             oks:true
@@ -14,8 +14,8 @@ class Carbutton extends Component{
     }
 
     delgoo(){
-        var cbox = document.querySelectorAll('.checkboxs')
-        var cbos  = cbox[0].getAttribute('checked',true);
+        // var cbox = document.querySelectorAll('.checkboxs')
+        // var cbos  = cbox[0].getAttribute('checked',true);
         // var boxx = cbox[0].getAttribute('checked');
         // // for(var i =0; i<cbox.length;i++){
         // //     if(boxx == true){
@@ -32,8 +32,24 @@ class Carbutton extends Component{
         // if(cbos){
         //     console.log(cbox)
         // }
-        console.log(cbos)
-        
+        // console.log(this)
+        let gid = this.props.delarr.rgid;
+        let yans = this.props.delarr.yans;
+        let mas = this.props.delarr.mas;
+        let datas = this.props.datas;
+        datas = datas.filter(item=>item.gid!=gid&item.yans!=yans&item.mas!=mas);
+        // console.log(this.props.delarr)
+        // this.state.datas.filter(item=>item.gid!==gid&&item.yans!==yans&&item.mas!==mas)
+        // this.props.opcheck('')
+        // goodslist:state.goodslist.filter(item=>item.id!==action.payload)
+        // let doto  = {datas}
+        // console.log('sdf',doto)
+        // this.props.delgoo(datas)
+        // console.log(datas)
+        // let data = await axios.post('http://localhost:3001/cart/upda',[
+        //     {DataBaseName:"Cart"},
+        //     {gid,yans,mas,sps}
+        // ])
         
  
     }

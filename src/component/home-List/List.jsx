@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import {withRouter} from 'react-router-dom';
 import './list.scss';
 
 
@@ -9,13 +10,17 @@ class List extends Component {
         this.state = {
 
         }
+        this.goto = this.goto.bind(this)
+    }
+    goto(id){
+        this.props.history.push('/gdetails/'+id);
     }
     render() {
         let db = this.props.database
         return (<div className="list">
             {
                 db.map((item) => {
-                    return <div className="list_item" key={item.goods_id}>
+                    return <div onClick={this.goto.bind(this,item.goods_id)} className="list_item" key={item.goods_id}>
                         <a href="javascript:;">
                             <div className="list_item_content">
                                 <div className="list_img">
@@ -37,4 +42,5 @@ class List extends Component {
     }
 }
 
+List = withRouter(List)
 export default List;

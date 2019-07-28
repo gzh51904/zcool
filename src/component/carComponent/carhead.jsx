@@ -23,6 +23,8 @@ class Carhead extends Component{
         var show2 = document.querySelector('.move_good')
         var show3 = document.querySelector('.go_pay')
         var show4 = document.querySelector('.bag-money')
+        var show5 = document.querySelectorAll('.changeNum')
+        var show6 = document.querySelectorAll('.showNum')
         var oks = this.state.oks;
         if(oks){
             var guanbi = '完成'
@@ -31,6 +33,11 @@ class Carhead extends Component{
             show2.style.display='block';
             show3.style.display='none';
             show4.style.display='none';
+            for(var i = 0; i < show5.length; i++){
+                show5[i].style.display='block';
+                show6[i].style.display='none';
+            }
+            
 
            
         }else{
@@ -40,6 +47,10 @@ class Carhead extends Component{
             show2.style.display='none';
             show3.style.display='block';
             show4.style.display='block';
+            for(var i = 0; i < show5.length; i++){
+                show5[i].style.display='none';
+                show6[i].style.display='block';
+            }
             
         }
         this.setState({oks:!oks})

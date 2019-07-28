@@ -15,13 +15,14 @@ class Gdetails extends Component{
             skuqu:'',
             skumas:'',
             skupic:'',
-            picobj:''
+            picobj:'',
+            gid:''
         }
     }
 
   async componentDidMount(){
         let {id} = this.props.match.params;
-        console.log('fsdfs',this.props)
+        // console.log('fsdfs',this.props)
         let datas = await axios.get('http://localhost:3001/gdetails',{
           params: {
               URL: 'https://webservice.juanpi.com/api/getMemberAboutInfo',
@@ -33,6 +34,7 @@ class Gdetails extends Component{
   
         });
         let dets = datas.data.skudata.info;
+        this.setState({gid:id});
         
         this.setState({det:dets});
         let sku = datas.data.skudata.sku
@@ -56,9 +58,10 @@ class Gdetails extends Component{
         this.setState({skupic:skupiarr})
         this.setState({picobj:picos})
         }   
-        console.log(this.state.skupic)
         
     }
+
+
     
 
     render(){
@@ -69,7 +72,9 @@ class Gdetails extends Component{
             {/* 商品信息 */}
             <Gdinf data={this.state.det}/>
             {/* 购买选择 */}
-            <Gad data={this.state.det} 
+            <Gad
+            gid={this.state.gid}
+            data={this.state.det} 
             yanse={this.state.skuqu} 
             mashu={this.state.skumas}
             pics={this.state.skupic}/>

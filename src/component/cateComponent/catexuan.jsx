@@ -16,12 +16,12 @@ class Catexuan extends Component {
         this._drawer = this._drawer.bind(this);
     }
     componentDidMount() {
-        console.log(this.props)
+        // console.log(this.props)
     }
     _gain(val) {
         //改变仓库cate的状态status
         this.props.changeStatus(val);
-        console.log(this.props);
+        // console.log(this.props);
     }
     _drawer(){
         this.props.drawer(1)

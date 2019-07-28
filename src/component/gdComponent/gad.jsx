@@ -11,7 +11,7 @@ class Gad extends Component{
           mashuIndex:'',
           yanse:'颜色',
           mashu:'码数',
-          shul:'1'
+          shul:''
         
         }
         
@@ -77,30 +77,42 @@ class Gad extends Component{
 
     //加入购物车
   async  jiaru(){
+    localStorage.setItem('username','longs')
       let yans = this.state.yanse;
       let mas = this.state.mashu;
       let spname = this.props.data.goods_title;
       let spic = this.props.data.goods_origin_url;
       let spri = this.props.data.fprice;
       let sori = this.props.data.oprice;
+      let sps = this.state.shul;
+      let guser = localStorage.getItem('username')
+      let gid = this.props.gid;
 
-      axios.post('http://localhost:3001/cart',{
-        yans,
-        mas,
-        spname,
-        spic,
-        spri,
-        sori
-      }).then(({data})=>{
-        if(data.code==1000){
-          alert('添加商品成功')
-        }else{
-          alert('xixi')
-        }
-      })
+      let data = await axios.post('http://localhost:3001/cart',[
+        {DataBaseName:"Cart"},
+        {'guser':guser},
+        {
+          yans,
+          mas,
+          spname,
+          spic,
+          spri,
+          sori,
+          sps,
+          guser,
+          gid
+    }
+    ]).then(({data})=>{
+      if(data.code==1000){
+        alert('添加商品成功')
+      }else{
+        alert('xixi')
+      }
+    })
  
 
     }
+
 
 
     render(){

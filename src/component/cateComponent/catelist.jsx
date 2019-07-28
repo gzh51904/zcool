@@ -46,7 +46,7 @@ class Catelist extends Component {
         //将数据存入redux
         // jsonObj.aggs是筛选数据
         this.props.setcateGoods(jsonObj.list);
-        console.log(this.props)
+        // console.log(this.props)
         //跳转详情
 
     }
@@ -122,7 +122,7 @@ class Catelist extends Component {
         }
     }
     onOpenChange = (...args) => {
-        console.log(args);
+        // console.log(args);
         this.setState({ open: !this.state.open });
     }
 

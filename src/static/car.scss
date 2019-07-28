@@ -301,6 +301,8 @@ position: relative;
     font-size: 14px;
     float: right;
     .changeNum{
+        float: left;
+        display: none;
         font-size: 14px;
         .decrease{
             cursor: pointer;
@@ -337,6 +339,8 @@ position: relative;
     .showNum{
         font-size: 14px;
         color: #666;
+        display: block;
+        float: right;
     }
     }
         }

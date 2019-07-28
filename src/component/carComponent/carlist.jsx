@@ -1,40 +1,98 @@
 import React,{Component} from 'react';
 import {Icon} from 'antd';
+import axios from 'axios';
+import {Checkbox} from 'antd-mobile';
+
 
 class Carlist extends Component{
     constructor(){
         super();
         this.state={
-            shul:'1'
+            shul:'1',
+            jianl:'1',
+            datas:[],
+            delarr:[],
+            oks:true
 
         }
         this.addshul=this.addshul.bind(this);
         this.jianshul=this.jianshul.bind(this);
+        this.opcheck=this.opcheck.bind(this);
     }
 
       //增加数量
-  addshul(){
-    let nums = document.querySelector('.increase');
-    let zjzs = Number(document.querySelector('.amount').text) ;
+ async addshul(event){
+      //inds为加号本身索引
+    var inds = event.currentTarget.getAttribute('index');
+    //zjzs为所有数字输入框的总和
+    let zjzs = document.querySelectorAll('.amount') ;
+    let nums = document.querySelectorAll('.showNum') ;
+    
 
-    let zjz = this.state.shul;
-    zjzs = zjz;
+   let zjz = zjzs[inds].placeholder;
     zjz++;
-    this.setState({shul:zjz})
-    // console.log(zjzs)
+    
+    zjzs[inds].placeholder = zjz;
+    let gid = this.state.datas[inds].gid
+    let yans = this.state.datas[inds].yans
+    let mas = this.state.datas[inds].mas
+    let sps = zjzs[inds].placeholder
+    
+    let data = await axios.post('http://localhost:3001/cart/upda',[
+        {DataBaseName:"Cart"},
+        {gid,yans,mas,sps}
+    ])
+
   }
     //减少数量
-    jianshul(){
-      let jian = document.querySelector('.decrease');
-      let zjzs = Number(document.querySelector('.amount').text) ;
+  async  jianshul(event){
+        var inds = event.currentTarget.getAttribute('index');
 
-      let jianz = this.state.shul;
-      zjzs = jianz;
+      let zjzs = document.querySelectorAll('.amount') ;
+
+      let jianz = zjzs[inds].placeholder;
       
-      if(this.state.shul > 1){
+      if(zjzs[inds].placeholder > 1){
         jianz--;
       }
-      this.setState({shul:jianz});
+      zjzs[inds].placeholder = jianz;
+      let gid = this.state.datas[inds].gid
+      let yans = this.state.datas[inds].yans
+      let mas = this.state.datas[inds].mas
+      let sps = zjzs[inds].placeholder
+
+      let data = await axios.post('http://localhost:3001/cart/upda',[
+        {DataBaseName:"Cart"},
+        {gid,yans,mas,sps}
+    ])
+    }
+
+   async  componentDidMount(){
+        let guser = localStorage.getItem('username')
+        let {data} = await axios.post('http://localhost:3001/cart/find',[
+            {DataBaseName:"Cart"},
+            {'guser':guser}
+        ])
+        this.setState({datas:data})
+        console.log(data)
+    }
+
+    opcheck(event){
+        // var onds = event.currentTarget.getAttribute('checked');
+        // document.querySelector('am-checkbox')
+        // console.log('fsdfsf',Boolean(onds))
+        // let gids = event.currentTarget.getAttribute('index')
+        // let rgid = this.state.datas[gids].gid;
+        // this.setState({delarr:rgid})
+        var oks = this.state.oks;
+        if(oks){
+            event.currentTarget.setAttribute('check',true);
+        }else{
+            event.currentTarget.removeAttribute('check',true);
+        }
+        this.setState({oks:!oks})
+        
+
     }
 
     render(){
@@ -44,7 +102,6 @@ class Carlist extends Component{
                 <div className="item_head">
                     <div className="head_radio">
                         {/* <span className="yixuanzhong"></span> */}
-                        <input type="checkbox"/>
                     </div>
                     <div className="head_type">
                         <a className="bc" href="javascript:;">
@@ -58,51 +115,59 @@ class Carlist extends Component{
                     <div className="head_action"></div>
                 </div>
             </div>
-            <div className="item_body">
-                <div className="item_group">
-                    {/* <a className="marketing" href="jacascript:;">
-                        <div className="tag">满件减</div>
-                    </a> */}
-                    <ul className="good_list">
-                        <li className="good_item">
-                            <div className="good_radio">
-                                {/* <span className="yixuanzhong"></span> */}
-                                <input type="checkbox"/>
-                            </div>
-                            <a className="good_info clear" href="javascript:;">
-                                <div className="pic">
-                                    <img src="https://goods7.juancdn.com/goods/180526/d/8/5b09179c33b0897a035e2f74_800x800.jpg?iopcmd=thumbnail&type=11&height=310&width=310%7Ciopcmd=convert&Q=88&dst=jpg" alt=""/>
+            {
+                this.state.datas.map((item,idx)=>{
+                    return(          
+                <div index={idx} key={item.gid} className="item_body">
+                    <div className="item_group">
+                        {/* <a className="marketing" href="jacascript:;">
+                            <div className="tag">满件减</div>
+                        </a> */}
+                        <ul className="good_list">
+                            <li className="good_item">
+                                <div className="good_radio">
+                                    {/* <span className="yixuanzhong"></span> */}
+                                    {/* <span index={idx} onClick={this.opcheck.bind(this)} className="amcheckbox">
+                                    <Checkbox  className="checkbox" defaultChecked/>
+                                    </span> */}
+                                    <input className="checkboxs" index={idx} onClick={this.opcheck.bind(this)} type="checkbox"/>
                                 </div>
-                                <div className="info_box">
-                                    <div className="info_first clear">
-                                        <p className="title">纯色V领修身短袖T恤</p>
+                                <a className="good_info clear" href="javascript:;">
+                                    <div className="pic">
+                                        <img src={item.spic} alt=""/>
                                     </div>
-                                    <div className="info_second clear">
-                                        <p className="">军绿色 XXXL</p>
-                                    </div>
-                                    <div className="info_third clear">
-                                        <div className="fd">
-                                            <p className="price fr"></p>
+                                    <div className="info_box">
+                                        <div className="info_first clear">
+                                            <p className="title">{item.spname}</p>
                                         </div>
-                                        <p className="price fl">
-                                            <span className="s1">￥39</span>
-                                            <span className="s2">￥69</span>
-                                        </p>
-                                        <p className="num fr">
-                                            <span className="changeNum">
-                                                <i onClick={this.jianshul.bind(this)} className="decrease no">-</i>
-                                                <input placeholder={this.state.shul}  className="amount" type="text"/>
-                                                <i onClick={this.addshul.bind(this)} className="increase">+</i>
-                                            </span>
-                                            <span className="showNum">X1</span>
-                                        </p>
+                                        <div className="info_second clear">
+                                            <p className="">{item.yans} {item.mas}</p>
+                                        </div>
+                                        <div className="info_third clear">
+                                            <div className="fd">
+                                                <p className="price fr"></p>
+                                            </div>
+                                            <p className="price fl">
+                                                <span className="s1">￥{item.spri}</span>
+                                                <span className="s2">￥{item.sori}</span>
+                                            </p>
+                                            <p className="num fr">
+                                                <span className="changeNum">
+                                                    <i index={idx} onClick={this.jianshul.bind(this)} className="decrease no">-</i>
+                                                    <input placeholder={item.sps}  className="amount" type="text"/>
+                                                    <i index={idx} onClick={this.addshul.bind(this)} className="increase">+</i>
+                                                </span>
+                                                <span className="showNum">X{item.sps}</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>)
+                })
+            }
         </div>
         )
     }

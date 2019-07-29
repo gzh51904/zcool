@@ -78,9 +78,22 @@ class Gad extends Component{
       this.setState({shul:jianz});
     }
 
+        //获取Cookie的方法
+        getCookie(name) {
+          var str = document.cookie;
+          var arr = str.split("; ");
+          for (var i = 0; i < arr.length; i++) {
+              //console.log(arr[i]);
+              var newArr = arr[i].split("=");
+              if (newArr[0] == name) {
+                  return newArr[1];
+              }
+          }
+      }
+
     //加入购物车
   async  jiaru(){
-    localStorage.setItem('username','longs')
+    // ge.setItem('username','longs')
       let yans = this.state.yanse;
       let mas = this.state.mashu;
       let spname = this.props.data.goods_title;
@@ -88,37 +101,47 @@ class Gad extends Component{
       let spri = this.props.data.fprice;
       let sori = this.props.data.oprice;
       let sps = this.state.shul;
-      let guser = localStorage.getItem('username')
+      let guser = this.getCookie('username')
       let gid = this.props.gid;
-
-      if(yans === '颜色'){
-        alert('请选择颜色')
-  
-      }else{
-        if(mas === '码数'){
-          alert('请选择码数')
+      if(guser){
+        if(yans === '颜色'){
+          alert('请选择颜色')
+    
         }else{
-          let data = await axios.post('http://localhost:3001/cart',[
-            {DataBaseName:"Cart"},
-            {'guser':guser},
-            {
-              yans,
-              mas,
-              spname,
-              spic,
-              spri,
-              sori,
-              sps,
-              guser,
-              gid
-        }
-        ]).then(({data})=>{
-          if(data.code==1000){
-            alert('添加商品成功')
+          if(mas === '码数'){
+            alert('请选择码数')
+          }else{
+            let data = await axios.post('http://localhost:3001/cart',[
+              {DataBaseName:"Cart"},
+              {'guser':guser},
+              {
+                yans,
+                mas,
+                spname,
+                spic,
+                spri,
+                sori,
+                sps,
+                guser,
+                gid
           }
-        })
+          ]).then(({data})=>{
+            if(data.code==1000){
+              alert('添加商品成功')
+            }
+          })
+          }
         }
+      }else{
+        this.props.gotomine();
+        console.log('77',this.props)
+        // var {history} = this.props;
+        // var home = "/indexs/mine";
+        // history.push(home);
+
       }
+      
+      
 
   
  
@@ -135,6 +158,13 @@ class Gad extends Component{
     gotohome(){
       this.props.gotohome()
     }
+
+    //跳转我的
+    gotomine(){
+      this.props.gotomine()
+    }
+
+
 
 
 
@@ -214,8 +244,8 @@ mashulist.push(<div key={j}
                 </div>
               </div>
             </div> */}
-            <div onClick={this.gotohome.bind(this)} className="biqBpV">
-                  <div className="gsNOod AQZKI">
+            <div className="biqBpV">
+                  <div onClick={this.gotohome.bind(this)} className="gsNOod AQZKI">
                     <Icon className="hZzUdy" type="home" />
                     <span className="jFebcI">首页</span>
                   </div>
@@ -268,7 +298,7 @@ mashulist.push(<div key={j}
                      </div>
                     </div>
                   </div>
-                  <div onClick={this.jiaru.bind(this)} className="ixMtuT">确定</div>
+                  <div onClick={this.gotohome.bind(this)} onClick={this.jiaru.bind(this)} className="ixMtuT">确定</div>
                 </div>
               </div>
             </div>

@@ -20,6 +20,7 @@ class Gdetails extends Component{
         }
         this.gotoshop=this.gotoshop.bind(this);
         this.gotohome=this.gotohome.bind(this);
+        this.gotomine=this.gotomine.bind(this);
     }
 
   async componentDidMount(){
@@ -77,6 +78,13 @@ class Gdetails extends Component{
         // console.log('dfsfs',this.props.history);
     }
 
+    gotomine(){
+        var {history} = this.props;
+        var mine = "/indexs/mine";
+        history.push(mine);
+        // console.log('dfsfs',this.props.history);
+    }
+
 
     
 
@@ -89,6 +97,7 @@ class Gdetails extends Component{
             <Gdinf data={this.state.det}/>
             {/* 购买选择 */}
             <Gad
+            gotomine={this.gotomine}
             gotoshop={this.gotoshop}
             gotohome={this.gotohome}
             gid={this.state.gid}

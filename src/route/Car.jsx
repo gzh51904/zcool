@@ -73,8 +73,21 @@ class Car extends Component{
 
     }
 
+          //获取Cookie的方法
+          getCookie(name) {
+            var str = document.cookie;
+            var arr = str.split("; ");
+            for (var i = 0; i < arr.length; i++) {
+                //console.log(arr[i]);
+                var newArr = arr[i].split("=");
+                if (newArr[0] == name) {
+                    return newArr[1];
+                }
+            }
+        }
+
     async  componentWillMount(){
-        let guser = localStorage.getItem('username')
+        let guser = this.getCookie('username')
         let {data} = await axios.post('http://localhost:3001/cart/find',[
             {DataBaseName:"Cart"},
             {'guser':guser}

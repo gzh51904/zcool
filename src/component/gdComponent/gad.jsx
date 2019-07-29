@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Icon} from 'antd';
 import axios from 'axios';
+import { Promise, async } from 'q';
 
 
 class Gad extends Component{
@@ -11,7 +12,7 @@ class Gad extends Component{
           mashuIndex:'',
           yanse:'颜色',
           mashu:'码数',
-          shul:''
+          shul:'1'
         
         }
         
@@ -23,7 +24,8 @@ class Gad extends Component{
         this.addshul=this.addshul.bind(this);
         this.jianshul=this.jianshul.bind(this);
         this.jiaru=this.jiaru.bind(this);
-        this.gotoshop=this.gotoshop.bind(this);
+
+  
     }
 
   boxshow(){
@@ -89,27 +91,36 @@ class Gad extends Component{
       let guser = localStorage.getItem('username')
       let gid = this.props.gid;
 
-      let data = await axios.post('http://localhost:3001/cart',[
-        {DataBaseName:"Cart"},
-        {'guser':guser},
-        {
-          yans,
-          mas,
-          spname,
-          spic,
-          spri,
-          sori,
-          sps,
-          guser,
-          gid
-    }
-    ]).then(({data})=>{
-      if(data.code==1000){
-        alert('添加商品成功')
+      if(yans === '颜色'){
+        alert('请选择颜色')
+  
       }else{
-        alert('xixi')
+        if(mas === '码数'){
+          alert('请选择码数')
+        }else{
+          let data = await axios.post('http://localhost:3001/cart',[
+            {DataBaseName:"Cart"},
+            {'guser':guser},
+            {
+              yans,
+              mas,
+              spname,
+              spic,
+              spri,
+              sori,
+              sps,
+              guser,
+              gid
+        }
+        ]).then(({data})=>{
+          if(data.code==1000){
+            alert('添加商品成功')
+          }
+        })
+        }
       }
-    })
+
+  
  
 
     }
@@ -117,6 +128,12 @@ class Gad extends Component{
     //跳转购物车
     gotoshop(){
       this.props.gotoshop()
+    }
+
+    
+    //跳转首页
+    gotohome(){
+      this.props.gotohome()
     }
 
 
@@ -197,7 +214,7 @@ mashulist.push(<div key={j}
                 </div>
               </div>
             </div> */}
-            <div className="biqBpV">
+            <div onClick={this.gotohome.bind(this)} className="biqBpV">
                   <div className="gsNOod AQZKI">
                     <Icon className="hZzUdy" type="home" />
                     <span className="jFebcI">首页</span>

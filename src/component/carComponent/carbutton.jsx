@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {Checkbox} from 'antd-mobile';
+import axios from 'axios'
 
 
 class Carbutton extends Component{
@@ -13,7 +14,7 @@ class Carbutton extends Component{
         this.opcheck=this.opcheck.bind(this);
     }
 
-    delgoo(){
+  async  delgoo(){
         // var cbox = document.querySelectorAll('.checkboxs')
         // var cbos  = cbox[0].getAttribute('checked',true);
         // var boxx = cbox[0].getAttribute('checked');
@@ -33,12 +34,17 @@ class Carbutton extends Component{
         //     console.log(cbox)
         // }
         // console.log(this)
-        let gid = this.props.delarr.rgid;
-        let yans = this.props.delarr.yans;
-        let mas = this.props.delarr.mas;
+
+        // let gs = this.props.delarr.length;
+        let gid = this.props.delarr[0];
+        
+        // let yans = this.props.delarr.yans;
+        // let mas = this.props.delarr.mas;
         let datas = this.props.datas;
-        datas = datas.filter(item=>item.gid!=gid&item.yans!=yans&item.mas!=mas);
+        datas = datas.filter(item=>item.gid!=gid);
         this.props.delgoo(datas)
+
+
         // console.log(this.props.delarr)
         // this.state.datas.filter(item=>item.gid!==gid&&item.yans!==yans&&item.mas!==mas)
         // this.props.opcheck('')
@@ -52,7 +58,26 @@ class Carbutton extends Component{
         //     {gid,yans,mas,sps}
         // ])
         // console.log('111111111')
-        console.log(datas)
+        // console.log(datas)
+        let ibox = document.querySelectorAll('.sks')
+        let iboxs = ibox.length;
+        let gids = '';
+        for(let i = 0; i<iboxs;i++){
+            gids = this.props.datas[i].gid;
+            
+        }
+
+        await axios.post('http://localhost:3001/cart/delcart',[
+            {DataBaseName:'Cart'},
+            {'gid':gids}
+        ]);
+     
+
+        
+        
+        
+
+
 
         
  
@@ -96,6 +121,7 @@ class Carbutton extends Component{
     }
 
     render(){
+        let zongjia = this.props.zongjia;
         return(
             <div className="bag-total">
             <div className="sel-all">
@@ -108,10 +134,10 @@ class Carbutton extends Component{
             <div className="bag-money">
                 <p className="count">
                     <span className="zje">
-                    合计<em className="p">￥0.00</em>
+                    合计<em className="p">￥{zongjia}</em>
                     </span>
                     <br/>
-                    <span className="s">总额:<em className="save">￥0.00</em> 
+                    <span className="s">总额:<em className="save">￥{zongjia}</em> 
                     立减:<em className="save">0.00</em></span>
                 
                 </p>

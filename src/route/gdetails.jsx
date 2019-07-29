@@ -19,6 +19,7 @@ class Gdetails extends Component{
             gid:''
         }
         this.gotoshop=this.gotoshop.bind(this);
+        this.gotohome=this.gotohome.bind(this);
     }
 
   async componentDidMount(){
@@ -64,9 +65,16 @@ class Gdetails extends Component{
 
     gotoshop(){
         var {history} = this.props;
-        var shop = "/indexs/car";
+        var shop = "/car";
         history.push(shop);
-        console.log('dfsfs',this.props.history);
+        // console.log('dfsfs',this.props.history);
+    }
+
+    gotohome(){
+        var {history} = this.props;
+        var home = "/indexs/home";
+        history.push(home);
+        // console.log('dfsfs',this.props.history);
     }
 
 
@@ -82,6 +90,7 @@ class Gdetails extends Component{
             {/* 购买选择 */}
             <Gad
             gotoshop={this.gotoshop}
+            gotohome={this.gotohome}
             gid={this.state.gid}
             data={this.state.det} 
             yanse={this.state.skuqu} 

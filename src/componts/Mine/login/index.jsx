@@ -3,7 +3,7 @@ import './login.scss';
 
 import { Tabs } from 'antd-mobile';
 import { List, InputItem, Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
-import { StickyContainer, Sticky } from 'react-sticky';
+// import { StickyContainer, Sticky } from 'react-sticky';
 import { relative } from 'path';
 
 import Axios from 'axios';

@@ -3,6 +3,9 @@
     .am-tabs-default-bar {
         background: #30363c !important;
     }
+    .am-tabs-tab-bar-wrap .am-tabs-default-bar{
+        width: 30% !important;
+    }
     .am-tabs-default-bar-nextpage {
         background: none;
     }

@@ -116,9 +116,9 @@ class Indexs extends Component {
                         }
                         title="购物车"
                         key="Friend"
-                        selected={this.props.location.pathname === '/indexs/car'}
+                        selected={this.props.location.pathname === '/car'}
                         onPress={() => {
-                            this.props.history.push('/indexs/car');
+                            this.props.history.push('/car');
                             this.setState({
                                 selectedTab: 'greenTab',
                             });

@@ -38,6 +38,7 @@ class Carbutton extends Component{
         let mas = this.props.delarr.mas;
         let datas = this.props.datas;
         datas = datas.filter(item=>item.gid!=gid&item.yans!=yans&item.mas!=mas);
+        this.props.delgoo(datas)
         // console.log(this.props.delarr)
         // this.state.datas.filter(item=>item.gid!==gid&&item.yans!==yans&&item.mas!==mas)
         // this.props.opcheck('')
@@ -50,6 +51,9 @@ class Carbutton extends Component{
         //     {DataBaseName:"Cart"},
         //     {gid,yans,mas,sps}
         // ])
+        // console.log('111111111')
+        console.log(datas)
+
         
  
     }

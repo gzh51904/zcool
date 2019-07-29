@@ -51,6 +51,7 @@ class Car extends Component{
         await this.setState({
             datas:delgo
         });
+
         
 
     }
@@ -63,12 +64,27 @@ class Car extends Component{
         ])
         this.setState({datas:data})
         console.log('xcxcc',this.state.datas)
+    
         
     }
 
-    componentWillUpdate(){
-        console.log('sfsfssss',this.state.datas)
+    componentDidUpdate(){
+
+        let lbox = document.querySelector('.good_list')
+        console.log('ssssssss',lbox.childElementCount)
+        let zobx = document.querySelector('.item_cart');
+        let nbox = document.querySelector('.my-bag');
+        console.log(zobx)
+        if(lbox.childElementCount === 0){
+            zobx.style.display = 'none';
+            nbox.style.display = 'block';
+        }else{
+            zobx.style.display = 'block';
+            nbox.style.display = 'none';
+        }
     }
+
+
 
 
     render(){

@@ -64,11 +64,33 @@ class Gdetails extends Component{
         
     }
 
+          //获取Cookie的方法
+          getCookie(name) {
+            var str = document.cookie;
+            var arr = str.split("; ");
+            for (var i = 0; i < arr.length; i++) {
+                //console.log(arr[i]);
+                var newArr = arr[i].split("=");
+                if (newArr[0] == name) {
+                    return newArr[1];
+                }
+            }
+        }
+
     gotoshop(){
-        var {history} = this.props;
-        var shop = "/car";
-        history.push(shop);
-        // console.log('dfsfs',this.props.history);
+        let guser = this.getCookie('username');
+        if(guser){
+            var {history} = this.props;
+            var shop = "/car";
+            history.push(shop);
+            // console.log('dfsfs',this.props.history);
+        }
+        else{
+            var {history} = this.props;
+        var mine = "/indexs/mine";
+        history.push(mine);
+        }
+       
     }
 
     gotohome(){

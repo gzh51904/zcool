@@ -176,59 +176,60 @@ class Carlist extends Component{
                     <div className="head_action"></div>
                 </div>
             </div>
-            {
-                this.props.datas.map((item,idx)=>{
-                    return(          
-                <div index={idx} key={idx} className="item_body">
+              <div  className="item_body">
                     <div className="item_group">
                         {/* <a className="marketing" href="jacascript:;">
                             <div className="tag">满件减</div>
                         </a> */}
                         <ul className="good_list">
-                            <li className="good_item">
-                                <div className="good_radio">
-                                    {/* <span className="yixuanzhong"></span> */}
-                                    {/* <span index={idx} onClick={this.opcheck.bind(this)} className="amcheckbox">
-                                    <Checkbox  className="checkbox" defaultChecked/>
-                                    </span> */}
-                                    <input  className="checkboxs" index={idx} onClick={this.opchecks.bind(this)} type="checkbox"/>
-                                </div>
-                                <a className="good_info clear" href="javascript:;">
-                                    <div className="pic">
-                                        <img src={item.spic} alt=""/>
+                            {
+                                this.props.datas.map((item,idx)=>{
+                                    return(        <li index={idx} key={idx} className="good_item">
+                                    <div className="good_radio">
+                                        {/* <span className="yixuanzhong"></span> */}
+                                        {/* <span index={idx} onClick={this.opcheck.bind(this)} className="amcheckbox">
+                                        <Checkbox  className="checkbox" defaultChecked/>
+                                        </span> */}
+                                        <input  className="checkboxs" index={idx} onClick={this.opchecks.bind(this)} type="checkbox"/>
                                     </div>
-                                    <div className="info_box">
-                                        <div className="info_first clear">
-                                            <p className="title">{item.spname}</p>
+                                    <a className="good_info clear" href="javascript:;">
+                                        <div className="pic">
+                                            <img src={item.spic} alt=""/>
                                         </div>
-                                        <div className="info_second clear">
-                                            <p className="">{item.yans} {item.mas}</p>
-                                        </div>
-                                        <div className="info_third clear">
-                                            <div className="fd">
-                                                <p className="price fr"></p>
+                                        <div className="info_box">
+                                            <div className="info_first clear">
+                                                <p className="title">{item.spname}</p>
                                             </div>
-                                            <p className="price fl">
-                                                <span className="s1">￥{item.spri}</span>
-                                                <span className="s2">￥{item.sori}</span>
-                                            </p>
-                                            <p className="num fr">
-                                                <span className="changeNum">
-                                                    <i index={idx} onClick={this.jianshul.bind(this)} className="decrease no">-</i>
-                                                    <input placeholder={item.sps}  className="amount" type="text"/>
-                                                    <i index={idx} onClick={this.addshul.bind(this)} className="increase">+</i>
-                                                </span>
-                                                <span className="showNum">X{item.sps}</span>
-                                            </p>
+                                            <div className="info_second clear">
+                                                <p className="">{item.yans} {item.mas}</p>
+                                            </div>
+                                            <div className="info_third clear">
+                                                <div className="fd">
+                                                    <p className="price fr"></p>
+                                                </div>
+                                                <p className="price fl">
+                                                    <span className="s1">￥{item.spri}</span>
+                                                    <span className="s2">￥{item.sori}</span>
+                                                </p>
+                                                <p className="num fr">
+                                                    <span className="changeNum">
+                                                        <i index={idx} onClick={this.jianshul.bind(this)} className="decrease no">-</i>
+                                                        <input placeholder={item.sps}  className="amount" type="text"/>
+                                                        <i index={idx} onClick={this.addshul.bind(this)} className="increase">+</i>
+                                                    </span>
+                                                    <span className="showNum">X{item.sps}</span>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </li>
+                                    </a>
+                                </li>)
+                                })
+                                 
+                            }
+                   
                         </ul>
                     </div>
-                </div>)
-                })
-            }
+                </div>
         </div>
         )
     }

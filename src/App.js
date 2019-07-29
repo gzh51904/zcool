@@ -32,6 +32,7 @@ class App extends Component {
 
     render(){return <div className="App" style={{background:'#fff'}}>
             <Route path="/cate" component={Cate}/>
+            <Route path="/car" component={Car}/>
             <Route path="/gdetails/:id" component={Gdetails}/>
             <Route path="/searchpage" component={SearchPage}/>
             <Route path="/indexs" component={Indexs}/>

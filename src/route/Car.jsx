@@ -63,7 +63,7 @@ class Car extends Component{
             {'guser':guser}
         ])
         this.setState({datas:data})
-        console.log('xcxcc',this.state.datas)
+        // console.log('xcxcc',this.state.datas)
     
         
     }
@@ -71,10 +71,8 @@ class Car extends Component{
     componentDidUpdate(){
 
         let lbox = document.querySelector('.good_list')
-        console.log('ssssssss',lbox.childElementCount)
         let zobx = document.querySelector('.item_cart');
         let nbox = document.querySelector('.my-bag');
-        console.log(zobx)
         if(lbox.childElementCount === 0){
             zobx.style.display = 'none';
             nbox.style.display = 'block';

@@ -77,8 +77,9 @@ class Carlist extends Component{
         // document.querySelector('am-checkbox')
         // console.log('fsdfsf',Boolean(onds))
         let inds = event.currentTarget.getAttribute('index')
-        let ibox = document.querySelectorAll('.item_body')
+        let ibox = document.querySelectorAll('.good_item')
         let iboxs = ibox[inds].getAttribute('index');
+        console.log(iboxs)
         
         
         let rgid = this.props.datas[inds].gid;

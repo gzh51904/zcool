@@ -1,6 +1,7 @@
 export const SET_TO_CATE = 'SET_TO_CATE' ;
 export const ADD_TO_CATE = 'ADD_TO_CATE' ;
 export const CHANGE_TO_STATUS = 'CHANGE_TO_STATUS' ;
+export const SETDATABASE_TO_CATE = 'CHANGE_TO_STATUS' ;
 
 export function setcateGoods(goods){//覆盖方法
     return {
@@ -23,8 +24,16 @@ export function changeStatus(goods){//添加方法
     }
 }
 
+export function setdatabase(databse){
+    return {
+        type : SETDATABASE_TO_CATE,
+        payload : databse
+    }
+}
+
 export default {
     setcateGoods,
     addcateGoods,
-    changeStatus
+    changeStatus,
+    setdatabase
 }

@@ -53,13 +53,11 @@ class Goods extends Component {
         this.setState(this.state.database = data2.data.data.goods);
         this.setState(this.state.database2 = data2.data.data.goods);
         //监听鼠标滚动
-        let a = document.querySelector('.am-tabs-pane-wrap');
-        a.addEventListener("scroll", this.scrollFn, true);
+        window.addEventListener("scroll", this.scrollFn, true);
     }
     async scrollFn() {
-        let a = document.querySelector('.am-tabs-pane-wrap');
-        
-        if (a.scrollHeight - 618 <= a.scrollTop && this.state.send.bool) {
+        let a = document.querySelector('#content');
+        if (window.scrollY + document.documentElement.clientHeight >= a.offsetHeight - 5 && this.state.send.bool) {
             //关闭滚动事件  节流
             this.setState(this.state.send = { bool: false });
             //到达零界点渲染新的商品
@@ -79,6 +77,7 @@ class Goods extends Component {
                 let db = this.state.database;
                 this.setState(this.state.database = [...db, ...data.data.data.goods]);
                 this.setState(this.state.database1 = [...db, ...data.data.data.goods]);
+                this.setState(this.state.send = { bool: true });
             } else {
                 let page2 = this.state.page2.num + 1;
                 this.setState(this.state.page2 = { num: page2 })
@@ -95,9 +94,9 @@ class Goods extends Component {
                 let db = this.state.database;
                 this.setState(this.state.database = [...db, ...data.data.data.goods]);
                 this.setState(this.state.database2 = [...db, ...data.data.data.goods]);
+                this.setState(this.state.send = { bool: true });
             }
             //重新开放请求
-            this.setState(this.state.send = { bool: true });
         }
         let tops = document.querySelector('.am-tabs-tab-bar-wrap');
         if (a.scrollTop >= 697) {
@@ -109,8 +108,8 @@ class Goods extends Component {
         }
     }
     componentWillUnmount() {
-        let a = document.querySelector('.am-tabs-pane-wrap');
-        a.removeEventListener('scroll', this.scrollFn, true);//要移出监听，第二个参数是函数不能带参数，带参数则表示不同函数。
+        window.removeEventListener('scroll', this.scrollFn, true);//要移出监听，第二个参数是函数不能带参数，带参数则表示不同函数。
+        this.scrollFn = null
     }
     goto(index) {
         let indexs = index + 1;

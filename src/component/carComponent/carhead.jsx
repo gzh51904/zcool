@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import {Icon} from 'antd';
 
+import {withRouter} from 'react-router-dom';
+
 class Carhead extends Component{
     constructor(props){
         super();
@@ -15,7 +17,7 @@ class Carhead extends Component{
 
 
     gobacks(){
-        this.props.goo();
+        this.props.history.goBack(-1);
     }
 
     bianjis(){
@@ -61,14 +63,14 @@ class Carhead extends Component{
  
 
     render(){
-        let zhuant = this.props.zhuant;
+        // let zhuant = this.props.zhuant;
         
         return(
             <header className="head">
             <div className="fixtop">
                 <span className="t-find">
                     <a onClick={this.gobacks.bind(this)} className="btn-left" href="javascript:;">
-                    <Icon className="fanhui" type="left" />
+                    <Icon  className="fanhui" type="left" />
                     </a>
                 </span>
                 <span className="t-index">购物车</span>
@@ -79,4 +81,6 @@ class Carhead extends Component{
     }
 }
 
+
+Carhead = withRouter(Carhead)
 export default Carhead;

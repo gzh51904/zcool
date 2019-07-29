@@ -115,7 +115,7 @@
         width: 71%;
         font-size: 12px;
         padding-left: 4%;
-
+        background: #fff;
         .wraper {
             height: 100%;
             width: 100%;
@@ -166,4 +166,8 @@
             }
         }
     }
+}
+
+.am-tab-bar-item{
+    background: #fff !important;
 }

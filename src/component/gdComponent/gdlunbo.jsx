@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { Carousel, WingBlank } from 'antd-mobile';
-
+import { Icon } from 'antd-mobile';
+import {withRouter} from 'react-router-dom';
 
 class Gdlunbo extends Component{
     constructor(props){
@@ -9,7 +10,7 @@ class Gdlunbo extends Component{
         this.state={
           det:[{},{}]
         }
-        
+        this.gobacks = this.gobacks.bind(this)
     }
 
     // componentDidUpdate(){
@@ -21,13 +22,16 @@ class Gdlunbo extends Component{
 
     // }
 
-
+    gobacks(){
+        this.props.history.goBack(-1);
+    }
     render(){
       let pist = this.props.lunbo;
         return(
         
                 <section className="p1">
                     <div className="gdMLpp">
+                        <Icon onClick={this.gobacks.bind(this)} style={{background:'#000',position:'absolute',top:'20px',left:'20px',zIndex:'6666',borderRadius:'20px',opacity:'0.5'}} size={'lg'} type="left" />
       <WingBlank>
         <Carousel
           autoplay={false}
@@ -63,5 +67,5 @@ class Gdlunbo extends Component{
         )
     }
 }
-
+Gdlunbo = withRouter(Gdlunbo)
 export default Gdlunbo;

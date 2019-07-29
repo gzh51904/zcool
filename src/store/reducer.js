@@ -1,6 +1,7 @@
 import {ADD_TO_MIAOSHA,CHANGE_TO_MIAOSHA_PAGE} from './miaosahAction';//秒杀页
 import {ADD_TO_CLASSIFY_GOODSLIST} from './classifyAction';
-import {SET_TO_CATE,ADD_TO_CATE,CHANGE_TO_STATUS} from './cateAction';
+import {SET_TO_CATE,ADD_TO_CATE,CHANGE_TO_STATUS,SETDATABASE_TO_CATE} from './cateAction';
+import {CHANGE_TO_MINE,SETNUMBER_TO_MINE,REMNUMBER_TO_MINE} from './mineAction'
 
 //初始化仓库
 let initStore = {
@@ -12,7 +13,10 @@ let initStore = {
     cateGoodsList : {//cate页数据
         status : '推荐',
         goods : []
-    }
+    },
+    cateDatabse : {},//cate请求数据的参数
+    logiStatus : false,
+    loginNum : '',
 }
 let reducer = (state=initStore,action) => {
     switch(action.type){
@@ -61,6 +65,30 @@ let reducer = (state=initStore,action) => {
                     ...state.cateGoodsList,
                     status : action.payload
                 }
+            }
+        }
+        case SETDATABASE_TO_CATE : {
+            return {
+                ...state,
+                cateDatabse:{...action.payload}
+            }
+        }
+        case CHANGE_TO_MINE: {
+            return {
+                ...state,
+                logiStatus : action.payload
+            }
+        }
+        case SETNUMBER_TO_MINE : {
+            return {
+                ...state,
+                loginNum : action.payload
+            }
+        }
+        case REMNUMBER_TO_MINE : {
+            return {
+                ...state,
+                loginNum : ''
             }
         }
         default :

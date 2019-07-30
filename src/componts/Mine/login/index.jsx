@@ -96,7 +96,7 @@ class login extends Component {
                 this.FalseTelNum(this)
 
             } else {
-                Axios.get('http://localhost:3001/checkTel', {
+                Axios.get('http://120.24.58.161:3001/checkTel', {
                     params: {
                         tel: tel
                     }
@@ -145,7 +145,7 @@ class login extends Component {
             this.PhoneNumNoEmpry(this)
         } else {
             if (this.state.SendCode) {
-                Axios.post('http://localhost:3001/PhoneCode', {
+                Axios.post('http://120.24.58.161:3001/PhoneCode', {
                     tel: tel,
                     num: num
                 })
@@ -178,7 +178,7 @@ class login extends Component {
                     this.CodeIsTrue(this)
 
 
-                    Axios.get('http://localhost:3001/login', {
+                    Axios.get('http://120.24.58.161:3001/login', {
                         params: {
                             tel: tel
                         }

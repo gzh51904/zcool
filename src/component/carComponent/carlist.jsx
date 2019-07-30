@@ -42,7 +42,7 @@ class Carlist extends Component {
         let mas = this.props.datas[inds].mas
         let sps = zjzs[inds].placeholder
 
-        let data = await axios.post('http://localhost:3001/cart/upda', [
+        let data = await axios.post('http://120.24.58.161:3001/cart/upda', [
             { DataBaseName: "Cart" },
             { gid, yans, mas, sps }
         ])
@@ -65,7 +65,7 @@ class Carlist extends Component {
         let mas = this.props.datas[inds].mas
         let sps = zjzs[inds].placeholder
 
-        let data = await axios.post('http://localhost:3001/cart/upda', [
+        let data = await axios.post('http://120.24.58.161:3001/cart/upda', [
             { DataBaseName: "Cart" },
             { gid, yans, mas, sps }
         ])

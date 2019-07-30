@@ -61,7 +61,7 @@ class reg extends Component {
         let tel = this.autoFocusInst.state.value;
         //手机号码非空验证
         if (tel.length) {
-            let { data } = await Axios.get('http://localhost:3001/checkTel', { params: { tel: tel } })
+            let { data } = await Axios.get('http://120.24.58.161:3001/checkTel', { params: { tel: tel } })
 
             if (data.code == 1000) {
                 //号码未注册
@@ -78,7 +78,7 @@ class reg extends Component {
                         let username = 'juanpi_' + this.randomCode11(this);
 
 
-                        Axios.post('http://localhost:3001/reg', { tel: tel, username: username })
+                        Axios.post('http://120.24.58.161:3001/reg', { tel: tel, username: username })
 
                         //储存cookie值
                         function setCookie(name, value, n) {
@@ -155,7 +155,7 @@ class reg extends Component {
             this.NoZero(this)
         } else {
             if(this.state.SendCode) {
-                Axios.get('http://localhost:3001/checkTel', {
+                Axios.get('http://120.24.58.161:3001/checkTel', {
                     params: {
                         tel: tel
                     }
@@ -171,7 +171,7 @@ class reg extends Component {
     
                         console.log(num)
                         this.state.Code = num;
-                        Axios.post('http://localhost:3001/PhoneCode', {
+                        Axios.post('http://120.24.58.161:3001/PhoneCode', {
                             tel: tel,
                             num: num
                         })
@@ -202,7 +202,7 @@ class reg extends Component {
                 // alert("手机号码有误，请重填");
                 this.TelNumNoZero(this)
             } else {
-                Axios.get('http://localhost:3001/checkTel', {
+                Axios.get('http://120.24.58.161:3001/checkTel', {
                     params: {
                         tel: phone
                     }

@@ -111,7 +111,7 @@ class Gad extends Component{
           if(mas === '码数'){
             alert('请选择码数')
           }else{
-            let data = await axios.post('http://localhost:3001/cart',[
+            let data = await axios.post('http://120.24.58.161:3001/cart',[
               {DataBaseName:"Cart"},
               {'guser':guser},
               {

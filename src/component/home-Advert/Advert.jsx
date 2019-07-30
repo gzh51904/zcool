@@ -11,20 +11,16 @@ class Advert extends Component {
                 </div>
             </div>
             <div className="recomm">
-                <div>
+                <div className="recomm_l">
                     <a href="javascript"></a>
+                </div>
+                <div className="recomm_r">
+                    <a href="javascript" className="recomm_r_t"></a>
+                    <a href="javascript" className="recomm_r_b"></a>
                 </div>
             </div>
             <div className="zhuanchang">
-                <div className="zhuanchang_nvzhuang">
-                    <a href="javascript:;"></a>
-                </div>
-                <div className="zhuanchang_xiebao">
-                    <a href="javascript:;"></a>
-                </div>
-                <div className="zhuanchang_muying">
-                    <a href="javascript:;"></a>
-                </div>
+                <a href="javascript:;"></a>
             </div>
             <div className="advert_title">
                 <div>

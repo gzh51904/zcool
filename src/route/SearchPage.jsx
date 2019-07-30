@@ -16,7 +16,7 @@ class SearchPage extends Component {
             user_groupids:'p8_c4_l4_222',
             is_ajax:1
         }
-        this.props.history.push({ pathname: "/indexs/cate", query: { name: nan,path : 'https://m.juanpi.com/search' } });
+        this.props.history.push({ pathname: "/cate", query: { name: nan,path : 'https://m.juanpi.com/search' } });
     }
     render() {
         return <div className="searchpage">
@@ -25,7 +25,7 @@ class SearchPage extends Component {
                 placeholder="搜索商品"
                 onSubmit={value =>this.searchFN(value)}//回车
                 // onClear={value => console.log(value, 'onClear')}//清除 
-                onCancel={value => console.log(value, 'onCancel')}//取消
+                onCancel={value => this.props.history.goBack(-1)}//取消
                 // onFocus={() => console.log('onFocus')}//聚焦
                 showCancelButton
                 onChange={this.onChange}

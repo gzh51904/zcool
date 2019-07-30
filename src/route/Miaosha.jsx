@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs, WhiteSpace } from 'antd-mobile';
+import { Tabs } from 'antd-mobile';
 import './miaosha.scss';
 
 import { get } from '../request';

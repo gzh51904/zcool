@@ -19,6 +19,8 @@ class Gdetails extends Component{
             gid:''
         }
         this.gotoshop=this.gotoshop.bind(this);
+        this.gotohome=this.gotohome.bind(this);
+        this.gotomine=this.gotomine.bind(this);
     }
 
   async componentDidMount(){
@@ -62,11 +64,47 @@ class Gdetails extends Component{
         
     }
 
+          //获取Cookie的方法
+          getCookie(name) {
+            var str = document.cookie;
+            var arr = str.split("; ");
+            for (var i = 0; i < arr.length; i++) {
+                //console.log(arr[i]);
+                var newArr = arr[i].split("=");
+                if (newArr[0] == name) {
+                    return newArr[1];
+                }
+            }
+        }
+
     gotoshop(){
+        let guser = this.getCookie('username');
+        if(guser){
+            var {history} = this.props;
+            var shop = "/car";
+            history.push(shop);
+            // console.log('dfsfs',this.props.history);
+        }
+        else{
+            var {history} = this.props;
+        var mine = "/indexs/mine";
+        history.push(mine);
+        }
+       
+    }
+
+    gotohome(){
         var {history} = this.props;
-        var shop = "/indexs/car";
-        history.push(shop);
-        console.log('dfsfs',this.props.history);
+        var home = "/indexs/home";
+        history.push(home);
+        // console.log('dfsfs',this.props.history);
+    }
+
+    gotomine(){
+        var {history} = this.props;
+        var mine = "/indexs/mine";
+        history.push(mine);
+        // console.log('dfsfs',this.props.history);
     }
 
 
@@ -81,7 +119,9 @@ class Gdetails extends Component{
             <Gdinf data={this.state.det}/>
             {/* 购买选择 */}
             <Gad
+            gotomine={this.gotomine}
             gotoshop={this.gotoshop}
+            gotohome={this.gotohome}
             gid={this.state.gid}
             data={this.state.det} 
             yanse={this.state.skuqu} 

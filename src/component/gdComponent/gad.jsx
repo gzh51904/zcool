@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Icon} from 'antd';
 import axios from 'axios';
+import { Promise, async } from 'q';
 
 
 class Gad extends Component{
@@ -11,7 +12,7 @@ class Gad extends Component{
           mashuIndex:'',
           yanse:'颜色',
           mashu:'码数',
-          shul:''
+          shul:'1'
         
         }
         
@@ -23,7 +24,8 @@ class Gad extends Component{
         this.addshul=this.addshul.bind(this);
         this.jianshul=this.jianshul.bind(this);
         this.jiaru=this.jiaru.bind(this);
-        this.gotoshop=this.gotoshop.bind(this);
+
+  
     }
 
   boxshow(){
@@ -76,9 +78,22 @@ class Gad extends Component{
       this.setState({shul:jianz});
     }
 
+        //获取Cookie的方法
+        getCookie(name) {
+          var str = document.cookie;
+          var arr = str.split("; ");
+          for (var i = 0; i < arr.length; i++) {
+              //console.log(arr[i]);
+              var newArr = arr[i].split("=");
+              if (newArr[0] == name) {
+                  return newArr[1];
+              }
+          }
+      }
+
     //加入购物车
   async  jiaru(){
-    localStorage.setItem('username','longs')
+    // ge.setItem('username','longs')
       let yans = this.state.yanse;
       let mas = this.state.mashu;
       let spname = this.props.data.goods_title;
@@ -86,30 +101,49 @@ class Gad extends Component{
       let spri = this.props.data.fprice;
       let sori = this.props.data.oprice;
       let sps = this.state.shul;
-      let guser = localStorage.getItem('username')
+      let guser = this.getCookie('username')
       let gid = this.props.gid;
-
-      let data = await axios.post('http://localhost:3001/cart',[
-        {DataBaseName:"Cart"},
-        {'guser':guser},
-        {
-          yans,
-          mas,
-          spname,
-          spic,
-          spri,
-          sori,
-          sps,
-          guser,
-          gid
-    }
-    ]).then(({data})=>{
-      if(data.code==1000){
-        alert('添加商品成功')
+      if(guser){
+        if(yans === '颜色'){
+          alert('请选择颜色')
+    
+        }else{
+          if(mas === '码数'){
+            alert('请选择码数')
+          }else{
+            let data = await axios.post('http://localhost:3001/cart',[
+              {DataBaseName:"Cart"},
+              {'guser':guser},
+              {
+                yans,
+                mas,
+                spname,
+                spic,
+                spri,
+                sori,
+                sps,
+                guser,
+                gid
+          }
+          ]).then(({data})=>{
+            if(data.code==1000){
+              alert('添加商品成功')
+            }
+          })
+          }
+        }
       }else{
-        alert('xixi')
+        this.props.gotomine();
+        console.log('77',this.props)
+        // var {history} = this.props;
+        // var home = "/indexs/mine";
+        // history.push(home);
+
       }
-    })
+      
+      
+
+  
  
 
     }
@@ -118,6 +152,19 @@ class Gad extends Component{
     gotoshop(){
       this.props.gotoshop()
     }
+
+    
+    //跳转首页
+    gotohome(){
+      this.props.gotohome()
+    }
+
+    //跳转我的
+    gotomine(){
+      this.props.gotomine()
+    }
+
+
 
 
 
@@ -198,7 +245,7 @@ mashulist.push(<div key={j}
               </div>
             </div> */}
             <div className="biqBpV">
-                  <div className="gsNOod AQZKI">
+                  <div onClick={this.gotohome.bind(this)} className="gsNOod AQZKI">
                     <Icon className="hZzUdy" type="home" />
                     <span className="jFebcI">首页</span>
                   </div>
@@ -251,7 +298,7 @@ mashulist.push(<div key={j}
                      </div>
                     </div>
                   </div>
-                  <div onClick={this.jiaru.bind(this)} className="ixMtuT">确定</div>
+                  <div onClick={this.gotohome.bind(this)} onClick={this.jiaru.bind(this)} className="ixMtuT">确定</div>
                 </div>
               </div>
             </div>

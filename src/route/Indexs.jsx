@@ -22,7 +22,21 @@ class Indexs extends Component {
         console.log(this.props);
         
     }
+
+           //获取Cookie的方法
+           getCookie(name) {
+            var str = document.cookie;
+            var arr = str.split("; ");
+            for (var i = 0; i < arr.length; i++) {
+                //console.log(arr[i]);
+                var newArr = arr[i].split("=");
+                if (newArr[0] == name) {
+                    return newArr[1];
+                }
+            }
+        }
     render() {
+        let guser = this.getCookie('username');
         return (
             <>
             <div id="content" style={{paddingBottom:'50px'}}>
@@ -118,10 +132,15 @@ class Indexs extends Component {
                         key="Friend"
                         selected={this.props.location.pathname === '/car'}
                         onPress={() => {
-                            this.props.history.push('/car');
-                            this.setState({
-                                selectedTab: 'greenTab',
-                            });
+                            if(guser){
+                                this.props.history.push('/car');
+                                this.setState({
+                                    selectedTab: 'greenTab',
+                                });
+                            }else{
+                                this.props.history.push('/indexs/mine');
+                            }
+                      
                         }}
                     >
                     </TabBar.Item>

@@ -28,7 +28,7 @@ class Catelist extends Component {
     async componentWillMount() {
         let key = this.props.location.query.name//拿到参数
         let path = this.props.location.query.path
-        let data = await axios.get('http://localhost:3001/catelist', {
+        let data = await axios.get('http://120.24.58.161:3001/catelist', {
             params: {
                 URL: path,
                 type: {
@@ -37,35 +37,31 @@ class Catelist extends Component {
                 }
             }
         })
-        if (data.data.data !== undefined) {
-            this.props.setcateGoods(data.data.data.list);
-        } else {
-            let l = '(';
-            let r = ')';
-            var firstIndex = data.data.indexOf(l);
-            var lastIndex = data.data.lastIndexOf(r);
-            var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
-            var jsonObj = eval("(" + jsonStr + ")");
-            //将数据存入redux
-            // jsonObj.aggs是筛选数据
-            this.props.setcateGoods(jsonObj.list);
-            // console.log(this.props)
-        }
-
+        let l = '(';
+        let r = ')';
+        var firstIndex = data.data.indexOf(l);
+        var lastIndex = data.data.lastIndexOf(r);
+        var jsonStr = data.data.substring(firstIndex, lastIndex + 1);
+        var jsonObj = eval("(" + jsonStr + ")");
+        //将数据存入redux
+        // jsonObj.aggs是筛选数据
+        this.props.setcateGoods(jsonObj.list);
+        // console.log(this.props)
         //跳转详情
 
     }
     scrollFn() {
         let a = document.querySelector('.categoods');
         let b = document.querySelector('.goodslist');
-        if (this.state.rej && (a.scrollTop + document.documentElement.clientHeight) >= (b.offsetHeight + 80)) {//关闭开关
+        if (this.state.rej && (a.scrollTop + document.documentElement.clientHeight) >= (b.offsetHeight+80)) {//关闭开关
+            console.log(1);
             this.setState(this.state = { rej: false });
             let newpage = this.state.pages + 1;
             this.setState(this.state = { pages: newpage }); //页码+1
             //到达零界点发送请求
             let key = this.props.location.query.name//拿到参数
             let path = this.props.location.query.path
-            let data = axios.get('http://localhost:3001/catelist', {
+            let data = axios.get('http://120.24.58.161:3001/catelist', {
                 params: {
                     URL: path,
                     type: {
@@ -93,7 +89,7 @@ class Catelist extends Component {
                     }
                     this.setState(this.state = { rej: true });
                 }
-
+                
             })
         }
     }
@@ -131,9 +127,9 @@ class Catelist extends Component {
         this.setState({ open: !this.state.open });
     }
 
-    gotodet(id) {
-        let { history } = this.props;
-        let pathname = '/gdetails/' + id;
+    gotodet(id){
+        let {history} = this.props;
+        let pathname = '/gdetails/'+id;
 
         history.push({
             pathname
@@ -152,9 +148,9 @@ class Catelist extends Component {
             </div>
             <div className="price_title">价格区间</div>
             <div className="price_input">
-                <input type="number" placeholder="最低价" className="low" />
+                <input type="number" placeholder="最低价" className="low"/>
                 <div className="line"></div>
-                <input type="number" placeholder="最高价" className="high" />
+                <input type="number" placeholder="最高价" className="high"/>
             </div>
             <div className="category">分类</div>
             <div className="categorys">
@@ -169,7 +165,7 @@ class Catelist extends Component {
         return (
             <div className="listbox">
                 {/* 类目筛选栏 */}
-                <Catexuan drawer={this.onOpenChange.bind(this)} />
+                <Catexuan drawer={this.onOpenChange.bind(this)}/>
                 {/* //类目商品表 */}
                 <Drawer
                     className="my-drawer"
@@ -187,7 +183,7 @@ class Catelist extends Component {
                             {
                                 arr_sort.map((item) => {
                                     return (
-                                        <li onClick={this.gotodet.bind(this, item.goods_id)} key={item.id ? item.id : item.goods_id} id={item.goods_id}>
+                                        <li onClick={this.gotodet.bind(this,item.goods_id)} key={item.id ? item.id : item.goods_id} id={item.goods_id}>
                                             <a className="goodsa" href="javascript:;">
                                                 {
                                                     item.pic_url ? <img src={item.pic_url} alt="" /> : <img src={item.picurl} alt="" />

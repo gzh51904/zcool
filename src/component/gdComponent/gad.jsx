@@ -3,6 +3,10 @@ import {Icon} from 'antd';
 import axios from 'axios';
 import { Promise, async } from 'q';
 
+import { connect } from 'react-redux';//引入redux
+import { bindActionCreators } from 'redux';
+import CartAction from '../../store/CartAction';
+
 
 class Gad extends Component{
     constructor(props){
@@ -134,11 +138,7 @@ class Gad extends Component{
         }
       }else{
         this.props.gotomine();
-        console.log('77',this.props)
-        // var {history} = this.props;
-        // var home = "/indexs/mine";
-        // history.push(home);
-
+        // console.log('77',this.props)
       }
       
       
@@ -162,6 +162,16 @@ class Gad extends Component{
     //跳转我的
     gotomine(){
       this.props.gotomine()
+    }
+
+    componentDidMount(){
+      let xiaoyuan = document.querySelector('.ejYqGn');
+      let cnums = this.props.cartNum
+      if(cnums>0){
+        xiaoyuan.style.display = 'block'
+      }else{
+        xiaoyuan.style.display = 'none'
+      }
     }
 
 
@@ -250,6 +260,7 @@ mashulist.push(<div key={j}
                     <span className="jFebcI">首页</span>
                   </div>
                   <div onClick={this.gotoshop.bind(this)} className="jIGqoB iVwfSH">
+                    <div className="ejYqGn">{this.props.cartNum}</div>
                   <Icon className="gLOWyV" type="shopping-cart" />
                     <span className="ktUUzU">购物车</span>
                   </div>
@@ -309,5 +320,13 @@ mashulist.push(<div key={j}
         )
     }
 }
+
+let mapstateToProps = (state)=>{
+  return {cartNum : state.cartNum}
+}
+let mapDispatchToProps = (dispatch)=>{
+  return bindActionCreators(CartAction,dispatch)
+}
+Gad = connect(mapstateToProps,mapDispatchToProps)(Gad)
 
 export default Gad;

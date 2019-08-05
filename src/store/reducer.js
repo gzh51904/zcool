@@ -2,6 +2,8 @@ import {ADD_TO_MIAOSHA,CHANGE_TO_MIAOSHA_PAGE} from './miaosahAction';//秒杀�
 import {ADD_TO_CLASSIFY_GOODSLIST} from './classifyAction';
 import {SET_TO_CATE,ADD_TO_CATE,CHANGE_TO_STATUS,SETDATABASE_TO_CATE} from './cateAction';
 import {CHANGE_TO_MINE,SETNUMBER_TO_MINE,REMNUMBER_TO_MINE} from './mineAction'
+import {REMOV_FROM_CAR} from './CartAction'
+
 
 //初始化仓库
 let initStore = {
@@ -17,6 +19,7 @@ let initStore = {
     cateDatabse : {},//cate请求数据的参数
     logiStatus : false,
     loginNum : '',
+    cartNum : ''//cart数量
 }
 let reducer = (state=initStore,action) => {
     switch(action.type){
@@ -89,6 +92,12 @@ let reducer = (state=initStore,action) => {
             return {
                 ...state,
                 loginNum : ''
+            }
+        }
+        case REMOV_FROM_CAR : {
+            return {
+                ...state,
+                cartNum : action.playload
             }
         }
         default :

@@ -6,21 +6,25 @@ import { Checkbox } from 'antd-mobile';
 
 class Carlist extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
+            arr:[],
             shul: '1',
             jianl: '1',
-            // datas:[],
+            datas:[],
             // delarr:[],
             oks: '',
             checkeds: '',
-            status: false
+            status: false,
+            zjs:0,
+            checked:[]
+           
 
 
         }
         this.addshul = this.addshul.bind(this);
         this.jianshul = this.jianshul.bind(this);
-        this.opchecks=this.opchecks.bind(this);
+        // this.opchecks=this.opchecks.bind(this);
 
     }
 
@@ -42,7 +46,7 @@ class Carlist extends Component {
         let mas = this.props.datas[inds].mas
         let sps = zjzs[inds].placeholder
 
-        let data = await axios.post('http://120.24.58.161:3001/cart/upda', [
+        let data = await axios.post('http://localhost:3001/cart/upda', [
             { DataBaseName: "Cart" },
             { gid, yans, mas, sps }
         ])
@@ -65,38 +69,22 @@ class Carlist extends Component {
         let mas = this.props.datas[inds].mas
         let sps = zjzs[inds].placeholder
 
-        let data = await axios.post('http://120.24.58.161:3001/cart/upda', [
+        let data = await axios.post('http://localhost:3001/cart/upda', [
             { DataBaseName: "Cart" },
             { gid, yans, mas, sps }
         ])
     }
-
-
-
-    async opchecks(event) {
-        // console.log(this.props)
-        // var onds = event.currentTarget.getAttribute('checked');
-        // document.querySelector('am-checkbox')
-        // console.log('fsdfsf',Boolean(onds))
-        let inds = event.currentTarget.getAttribute('index')
-        let ibox = document.querySelectorAll('.checkboxs')
-        let kbox = document.querySelectorAll('.good_item')
-        let bbox = kbox[inds];
-        let iboxx = ibox[inds];
-        let rgid = this.props.datas[inds].gid;
-        let yans = this.props.datas[inds].yans;
-        let mas = this.props.datas[inds].mas;
-        // console.log(iboxx.checked)
-        if(iboxx.checked == true){
-            this.props.opcheck(rgid)
-            bbox.className="good_item sks"
-            
-        }else{
-            bbox.className="good_item"
-        }    
         
-    }
-
+        
+//     }
+//获取单选框的值
+getCheckedChange=(e,i)=>{
+    //console.log(e.target.checked)
+    //文本框的值 e.target.value 需要赋值给 json 数据的下标为index
+this.props.getCheckedChange(e,i);
+    
+    
+}
 
     render() {
         
@@ -136,8 +124,14 @@ class Carlist extends Component {
                                             <input className="checkboxs"
                                                 
                                                 // checked={this.state.status}
-                                                ref="abc" index={idx}
-                                                onClick={this.opchecks.bind(this)}
+                                                 indexs={idx}
+                                                // onClick={this.opchecks.bind(this)}
+                                               checked={item.checked || false}
+                                                onChange={
+                                                    (e)=>{
+                                                        this.getCheckedChange(e,idx)
+                                                    }
+                                                }
                                                 // onClick={this.opchecks.bind(this)}
                                                 type="checkbox"
                                                 // onChange={this.changCheck}

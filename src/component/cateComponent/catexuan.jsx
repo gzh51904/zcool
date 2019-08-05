@@ -7,6 +7,8 @@ import { connect } from 'react-redux';//引入redux
 import { bindActionCreators } from 'redux';
 import cateAction from '../../store/cateAction';
 
+import '../../static/cate.scss';
+
 class Catexuan extends Component {
     constructor(props) {
         super();

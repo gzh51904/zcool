@@ -2,42 +2,32 @@ import React, { Component } from 'react';
 
 import { get } from '../request';
 import { NavBar, Icon } from 'antd-mobile';
+import Catelist from '../component/cateComponent/catelist';
+
+import '../static/cate.scss';
 
 class Fengqiang extends Component {
-    async componentDidMount() {
-        let data = await get('http://120.24.58.161:3001/find', {
-            params: {
-                URL: 'https://shop.juanpi.com/gsort',
-                type: {
-                    key: 'zuihoufengqiang',
-                    type: 1,
-                    zhouyi_ids: 'p8_c4_l4',
-                    machining: 'hotcoupon',
-                    page: 1,
-                    rows: 10,
-                    dtype: 'JSONP',
-                    price_range: '',
-                    cat_threeids: '',
-                    filter_id: '',
-                    cm: 1,
-                    cm_channel: 4,
-                    callback: 'gsort_callback'
-                }
-            }
-        });
-        console.log(data);
+    constructor(){
+        super();
+        this.state = {
+            
+        }
+        this.clickFn = this.clickFn.bind(this)
+    }
+    clickFn(){
+        this.props.history.goBack(-1);
     }
     render() {
-        return <div className="fengqiang">
-            <NavBar
+        return <div className="fengqiang" style={{clear:'both'}}>
+            <NavBar style={{position : 'relative',zIndex : '999999'}}
                 mode="light"
-                icon={<Icon type="left" style={{ color: '#000' }} />}
-                onLeftClick={() => console.log('onLeftClick')}
+                icon={<Icon onClick={this.clickFn.bind(this)} type="left" style={{ color: '#000' }} />}
                 rightContent={[
                     <Icon key="0" type="search" style={{ marginRight: '16px', color: '#000' }} />,
                     <Icon key="1" type="ellipsis" style={{ color: '#000' }} />,
                 ]}
             >T恤</NavBar>
+            <Catelist/>
         </div>
     }
 }

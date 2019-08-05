@@ -3,11 +3,17 @@ import React, { Component } from 'react';
 import './advert.scss';
 
 class Advert extends Component {
+    constructor(){
+        super();
+        this.state = {
+            img1 : require('../../img/adv1.gif'),
+        }
+    }
     render() {
         return <div className="advert">
             <div className="activity">
                 <div>
-                    <a href=""></a>
+                    <a href="javascript:;"></a>
                 </div>
             </div>
             <div className="recomm">

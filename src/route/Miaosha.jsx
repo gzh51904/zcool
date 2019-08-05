@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs } from 'antd-mobile';
+import { Tabs, WhiteSpace } from 'antd-mobile';
 import './miaosha.scss';
 
 import { get } from '../request';
@@ -20,7 +20,7 @@ class Miaosha extends Component {
         if (!this.props.miaoshaList.goods.length) {
             //store没有数据就请求数据
             //设置到redux仓库存起来
-            let data = await get('http://localhost:3001/search', {
+            let data = await get('http://120.24.58.161:3001/search', {
                 params: {
                     URL: 'https://m.juanpi.com/act/timebuy-xrgoodslist'
                 }

@@ -53,7 +53,7 @@ class Carbutton extends Component{
         // console.log('sdf',doto)
         // this.props.delgoo(datas)
         // console.log(datas)
-        // let data = await axios.post('http://localhost:3001/cart/upda',[
+        // let data = await axios.post('http://120.24.58.161:3001/cart/upda',[
         //     {DataBaseName:"Cart"},
         //     {gid,yans,mas,sps}
         // ])
@@ -67,7 +67,7 @@ class Carbutton extends Component{
             
         }
 
-        await axios.post('http://localhost:3001/cart/delcart',[
+        await axios.post('http://120.24.58.161:3001/cart/delcart',[
             {DataBaseName:'Cart'},
             {'gid':gids}
         ]);

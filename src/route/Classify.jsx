@@ -27,7 +27,7 @@ class Classify extends Component {
 
     async componentWillMount() {
         if (!this.props.ClassifyGoodList.length) {//节流，判断redux是否有数据了
-            let data = await get('http://localhost:3001/catelist', {
+            let data = await get('http://120.24.58.161:3001/catelist', {
                 params: {
                     URL: 'https://m.juanpi.com/cate/catelist',
                     type: {

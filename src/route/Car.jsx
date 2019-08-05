@@ -88,7 +88,7 @@ class Car extends Component{
 
     async  componentWillMount(){
         let guser = this.getCookie('username')
-        let {data} = await axios.post('http://localhost:3001/cart/find',[
+        let {data} = await axios.post('http://120.24.58.161:3001/cart/find',[
             {DataBaseName:"Cart"},
             {'guser':guser}
         ])

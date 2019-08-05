@@ -26,7 +26,7 @@ class Gdetails extends Component{
   async componentDidMount(){
         let {id} = this.props.match.params;
         // console.log('fsdfs',this.props)
-        let datas = await axios.get('http://localhost:3001/gdetails',{
+        let datas = await axios.get('http://120.24.58.161:3001/gdetails',{
           params: {
               URL: 'https://webservice.juanpi.com/api/getMemberAboutInfo',
               type: {

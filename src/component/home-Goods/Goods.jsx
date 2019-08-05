@@ -99,7 +99,7 @@ class Goods extends Component {
             //重新开放请求
         }
         let tops = document.querySelector('.am-tabs-tab-bar-wrap');
-        if (a.scrollTop >= 697) {
+        if (window.scrollY >= 750) {
             tops.style.position = 'fixed';
             tops.style.top = '0';
         } else {
@@ -115,13 +115,14 @@ class Goods extends Component {
         let indexs = index + 1;
         this.setState(this.state.goto = { goto: indexs });//设置目前在哪个选项卡;
         //设置滚动条位置;
-        let a = document.querySelector('.am-tabs-pane-wrap');
         if (indexs == 1) {//存储滚动条
-            this.setState(this.state.location2 = { to: a.scrollTop });
-            a.scrollTo(0, this.state.location1.to);
+            console.log(window.scrollY)
+            this.setState(this.state.location2 = { to: window.scrollY });
+            window.scrollTo(0, this.state.location1.to);
         } else {
-            this.setState(this.state.location1 = { to: a.scrollTop });
-            a.scrollTo(0, this.state.location2.to);
+            console.log(window.scrollY)
+            this.setState(this.state.location1 = { to: window.scrollY });
+            window.scrollTo(0, this.state.location2.to);
         }
     }
     render() {
